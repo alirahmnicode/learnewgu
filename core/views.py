@@ -1,11 +1,18 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from .models import Vocabulary
 from .forms import VocabulayForm
 
 
 class Dashboard(View):
     def get(self, request):
-        return render(request, 'core/dashboard.html')
+        words = Vocabulary.objects.get_words()
+        phrases = Vocabulary.objects.get_phrases()
+        content = {
+            'words':words,
+            'phrases':phrases
+        }
+        return render(request, 'core/dashboard.html', content)
 
 class AddObject(View):
     def get(self, request, **kwrags):

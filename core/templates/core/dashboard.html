@@ -2,8 +2,23 @@
     <title>dahboard</title>
 {% endblock head %}
 
-{% block content %}
+{% block nav %}
+    {% include 'inc/nav.html' %}
+{% endblock nav %}
+
+
     
+{% block content %}
+<a href="{% url 'core:add-object' %}">Add+</a>
+<hr>
+
+<div class="content">
+    
+    {% for word in words %}
+        <div>{{word}}</div>
+    {% endfor %}
+        
+</div>
 {% endblock content %}
     
     
