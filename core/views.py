@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import UpdateView
 from .models import Vocabulary
 from .forms import VocabulayForm
 
@@ -26,3 +27,10 @@ class AddObject(View):
             obj.user = request.user
             obj.save()
             return redirect(request.META.get('HTTP_REFERER'))
+
+
+class UpdateVocab(UpdateView):
+    template_name = 'core/update.html'
+    model = Vocabulary
+    form_class = VocabulayForm
+    success_url = '/'
