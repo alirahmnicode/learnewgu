@@ -8,6 +8,6 @@ app_name = 'core'
 urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html"), name="home"),
     path('dashboard/', Dashboard.as_view(), name="dashboard"),
-    path('add/', AddObject.as_view(), name="add-object"),
-    path('edit/<int:pk>/', UpdateVocab.as_view(), name="update-vocab"),
+    path('add/', AddObject.as_view(), name="add"),
+    path('edit/<int:pk>/', UpdateVocab.as_view(), name="edit"),
 ]
