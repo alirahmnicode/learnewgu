@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 from .models import Vocabulary
 from .forms import VocabulayForm
 
@@ -34,3 +34,9 @@ class UpdateVocab(UpdateView):
     model = Vocabulary
     form_class = VocabulayForm
     success_url = '/'
+
+
+class DeleteVocabView(DeleteView):
+    template_name = 'core/vocab_delete.html'
+    model = Vocabulary
+    success_url = 'core:dashboard'

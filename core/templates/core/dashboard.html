@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+
 {% block head %}
 <title>dahboard</title>
 {% endblock head %}
@@ -19,6 +21,7 @@
         <div>{{word}}</div>
         <div>
             <a href="{% url 'core:edit' pk=word.pk %}">Edit</a>
+            <a href="{% url 'core:delete' pk=word.pk %}">Delete</a>
         </div>
     </div>
     {% endfor %}
