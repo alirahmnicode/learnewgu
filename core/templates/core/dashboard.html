@@ -1,24 +1,27 @@
 {% block head %}
-    <title>dahboard</title>
+<title>dahboard</title>
 {% endblock head %}
 
 {% block nav %}
-    {% include 'inc/nav.html' %}
+{% include 'inc/nav.html' %}
 {% endblock nav %}
 
 
-    
+
 {% block content %}
-<a href="{% url 'core:add-object' %}">Add+</a>
+<a href="{% url 'core:add' %}">Add+</a>
 <hr>
 
 <div class="content">
-    
+
     {% for word in words %}
+    <div>
         <div>{{word}}</div>
+        <div>
+            <a href="{% url 'core:edit' pk=word.pk %}">Edit</a>
+        </div>
+    </div>
     {% endfor %}
-        
+
 </div>
 {% endblock content %}
-    
-    
