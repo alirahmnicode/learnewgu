@@ -18,7 +18,7 @@
 
     {% for word in words %}
     <div>
-        <div>{{word}}</div>
+        <div><a href="{% url 'core:detail' pk=word.pk %}">{{word}}</a></div>
         <div>
             <a href="{% url 'core:edit' pk=word.pk %}">Edit</a>
             <a href="{% url 'core:delete' pk=word.pk %}">Delete</a>

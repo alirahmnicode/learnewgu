@@ -40,3 +40,8 @@ class DeleteVocabView(DeleteView):
     template_name = 'core/vocab_delete.html'
     model = Vocabulary
     success_url = 'core:dashboard'
+
+
+class DetailVocabView(DeleteView):
+    template_name = 'core/detail.html'
+    model = Vocabulary

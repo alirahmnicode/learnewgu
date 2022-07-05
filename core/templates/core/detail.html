@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>{{object}}</title>
+{% endblock head %}
+
+{% block content %}
+<div>
+    <div><a href="{% url 'core:detail' pk=object.pk %}">{{object}}</a></div>
+    <div>
+        <a href="{% url 'core:edit' pk=object.pk %}">Edit</a>
+        <a href="{% url 'core:delete' pk=object.pk %}">Delete</a>
+    </div>
+</div>
+{% endblock content %}
+    
+    
