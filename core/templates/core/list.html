@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>list of vocabulary</title>
+{% endblock head %}
+
+{% block content %}
+<div>
+
+    {% for vocab in object_list %}
+    <div>
+        <div>{{vocab.text}}</div>
+        <div>{{vocab.translation}}</div>
+        <div>{{vocab.review_count}}</div>
+        <div>{{vocab.type}}</div>
+        <div>{{vocab.created}}</div>
+    </div>
+    <hr>
+    {% endfor %}
+
+</div>
+{% endblock content %}

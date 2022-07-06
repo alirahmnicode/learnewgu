@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import UpdateView, DeleteView, DetailView
+from django.views.generic import UpdateView, DeleteView, DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Vocabulary
@@ -51,3 +51,9 @@ class DetailVocabView(DetailView):
 
     def get_queryset(self):
         return Vocabulary.objects.filter(user=self.request.user)
+
+
+class ListVocabView(ListView):
+
+    template_name = 'core/list.html'
+    model = Vocabulary
