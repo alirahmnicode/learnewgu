@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import UpdateView, DeleteView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Vocabulary
@@ -45,7 +45,7 @@ class DeleteVocabView(DeleteView):
     success_url = 'core:dashboard'
 
 
-class DetailVocabView(DeleteView):
+class DetailVocabView(DetailView):
 
     template_name = 'core/detail.html'
 
