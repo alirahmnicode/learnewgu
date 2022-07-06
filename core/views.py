@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 from django.views.generic import UpdateView, DeleteView, DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import JsonResponse
 from .models import Vocabulary
 from .forms import VocabulayForm
 
@@ -57,3 +58,11 @@ class ListVocabView(ListView):
 
     template_name = 'core/list.html'
     model = Vocabulary
+
+
+class ReviewVocab(View):
+    def post(self, request, **kwargs):
+        vocab = get_object_or_404(Vocabulary, pk=kwargs['pk'])
+        count = vocab.review()
+        return JsonResponse({'count':count})
+    

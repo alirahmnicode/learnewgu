@@ -24,5 +24,10 @@ class Vocabulary(models.Model):
 
     objects = VocabManager()
 
+    def review(self):
+        self.review_count += 1
+        self.save()
+        return self.review_count
+        
     def __str__(self):
         return self.text[:20]

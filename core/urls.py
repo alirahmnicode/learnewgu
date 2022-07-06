@@ -1,6 +1,9 @@
 from django.urls import path
 from django.views.generic import TemplateView
-from .views import Dashboard, AddObject, UpdateVocab, DeleteVocabView, DetailVocabView, ListVocabView
+from .views import (Dashboard, 
+                    AddObject, UpdateVocab, 
+                    DeleteVocabView, DetailVocabView, 
+                    ListVocabView, ReviewVocab)
 
 
 app_name = 'core'
@@ -13,4 +16,5 @@ urlpatterns = [
     path('vocab/<int:pk>/delete/', DeleteVocabView.as_view(), name="delete"),
     path('vocab/<int:pk>/detail/', DetailVocabView.as_view(), name="detail"),
     path('vocab/list/', ListVocabView.as_view(), name="list"),
+    path('vocab/review/<int:pk>/', ReviewVocab.as_view(), name="review"),
 ]

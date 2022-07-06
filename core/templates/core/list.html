@@ -12,10 +12,13 @@
     <div>
         <div>{{vocab.text}}</div>
         <div>{{vocab.translation}}</div>
-        <div>{{vocab.review_count}}</div>
+        <div class="view-count">{{vocab.review_count}}</div>
         <div>{{vocab.type}}</div>
         <div>{{vocab.created}}</div>
-        <button class="viewed">Viewed</button>
+        <div>
+            <input type="hidden" name="pk" value="{{vocab.pk}}">
+            <button class="viewed">Viewed</button>
+        </div>
     </div>
     <hr>
     {% endfor %}
