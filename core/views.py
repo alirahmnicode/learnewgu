@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from .models import Vocabulary
 from .forms import VocabulayForm
 
@@ -14,6 +16,7 @@ class Dashboard(View):
             'phrases':phrases
         }
         return render(request, 'core/dashboard.html', content)
+
 
 class AddObject(View):
     def get(self, request, **kwrags):
@@ -43,5 +46,8 @@ class DeleteVocabView(DeleteView):
 
 
 class DetailVocabView(DeleteView):
+
     template_name = 'core/detail.html'
-    model = Vocabulary
+
+    def get_queryset(self):
+        return Vocabulary.objects.filter(user=self.request.user)
