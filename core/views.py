@@ -6,6 +6,7 @@ from django.utils.decorators import method_decorator
 from django.http import JsonResponse
 from .models import Vocabulary
 from .forms import VocabulayForm
+from .filters import VocabFilter
 
 
 class Dashboard(View):
@@ -59,6 +60,11 @@ class ListVocabView(ListView):
     template_name = 'core/list.html'
     model = Vocabulary
 
+    def get_queryset(self):
+        context = {}
+        context['objects'] = super().get_queryset()
+        context['f'] = VocabFilter(self.request.GET, queryset=Vocabulary.objects.all())
+        return context
 
 class ReviewVocab(View):
     def post(self, request, **kwargs):

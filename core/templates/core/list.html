@@ -6,15 +6,21 @@
 {% endblock head %}
 
 {% block content %}
-<div>
+<div class="filters">
+    <form method="get">
+        {{ object_list.f.form.as_p }}
+        <input type="submit" />
+    </form>
+</div>
 
-    {% for vocab in object_list %}
+<div>
+    {% for obj in object_list.f.qs %}
     <div>
-        <div>{{vocab.text}}</div>
-        <div>{{vocab.translation}}</div>
-        <div class="view-count">{{vocab.review_count}}</div>
-        <div>{{vocab.type}}</div>
-        <div>{{vocab.created}}</div>
+        <div>{{obj.text}}</div>
+        <div>{{obj.translation}}</div>
+        <div class="view-count">{{obj.review_count}}</div>
+        <div>{{obj.type}}</div>
+        <div>{{obj.created}}</div>
         <div>
             <input type="hidden" name="pk" value="{{vocab.pk}}">
             <button class="viewed">Viewed</button>
@@ -22,8 +28,8 @@
     </div>
     <hr>
     {% endfor %}
-
 </div>
+
 {% endblock content %}
 
 {% block js %}
