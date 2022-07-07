@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from .models import Vocabulary
 from .forms import VocabulayForm
 from .filters import VocabFilter
+from .listing_obj import Listing
 
 
 class Dashboard(View):
@@ -55,16 +56,23 @@ class DetailVocabView(DetailView):
         return Vocabulary.objects.filter(user=self.request.user)
 
 
-class ListVocabView(ListView):
+class ListVocabView(View):
 
-    template_name = 'core/list.html'
-    model = Vocabulary
+    def get(self, request, **kwargs):
 
-    def get_queryset(self):
-        context = {}
-        context['objects'] = super().get_queryset()
-        context['f'] = VocabFilter(self.request.GET, queryset=Vocabulary.objects.all())
-        return context
+        end_articles = request.GET.get('n')
+        # if request not ajax
+        if not end_articles:
+            f = VocabFilter(self.request.GET, queryset=Vocabulary.objects.all())
+            return render(request, 'core/list.html', {'filter':f})
+        # if send request with ajax
+        else:
+            objs = Vocabulary.objects.all()
+            listing = Listing(objs=objs)
+            listing.range_of_objects(10, end_articles)
+            data = listing.get_objects()
+            return JsonResponse({'objects': data})
+
 
 class ReviewVocab(View):
     def post(self, request, **kwargs):

@@ -8,13 +8,13 @@
 {% block content %}
 <div class="filters">
     <form method="get">
-        {{ object_list.f.form.as_p }}
+        {{ filter.form.as_p }}
         <input type="submit" />
     </form>
 </div>
 
 <div>
-    {% for obj in object_list.f.qs %}
+    {% for obj in filter.qs %}
     <div>
         <div>{{obj.text}}</div>
         <div>{{obj.translation}}</div>
@@ -36,4 +36,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{% static 'js/view.js' %}"></script>
+<script src="{% static 'js/scrollLoader.js' %}"></script>
 {% endblock js %}
