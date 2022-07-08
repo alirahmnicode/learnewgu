@@ -3,7 +3,8 @@ from django.views.generic import TemplateView
 from .views import (Dashboard, 
                     AddObject, UpdateVocab, 
                     DeleteVocabView, DetailVocabView, 
-                    ListVocabView, ReviewVocab)
+                    ListVocabView, ReviewVocab,
+                    RandomReview)
 
 
 app_name = 'core'
@@ -17,4 +18,5 @@ urlpatterns = [
     path('vocab/<int:pk>/detail/', DetailVocabView.as_view(), name="detail"),
     path('vocab/list/', ListVocabView.as_view(), name="list"),
     path('vocab/review/<int:pk>/', ReviewVocab.as_view(), name="review"),
+    path('vocab/random-review/', RandomReview.as_view(), name="random"),
 ]

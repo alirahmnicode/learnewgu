@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 from django.views.generic import UpdateView, DeleteView, DetailView, ListView
@@ -45,7 +46,7 @@ class UpdateVocab(UpdateView):
 class DeleteVocabView(DeleteView):
     template_name = 'core/vocab_delete.html'
     model = Vocabulary
-    success_url = 'core:dashboard'
+    success_url = '/'
 
 
 class DetailVocabView(DetailView):
@@ -81,3 +82,9 @@ class ReviewVocab(View):
         count = vocab.review()
         return JsonResponse({'count':count})
     
+
+class RandomReview(View):
+    def get(self, request):
+        items = list(Vocabulary.objects.all(owner=request.user))
+        random_item = random.choice(items)
+        return render(request, 'core/random_review.html', {'obj':random_item})
