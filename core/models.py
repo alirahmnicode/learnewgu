@@ -3,11 +3,25 @@ from django.contrib.auth.models import User
 
 
 class VocabManager(models.Manager):
-    def get_words(self):
-        return self.get_queryset().filter(type='word')
+    def get_queryset(self, owner=None):
+        queryset = super().get_queryset().order_by('-created')
+        if owner is not None:
+            return queryset.filter(user=owner)
+        else:
+            return queryset.order_by('-created')
 
-    def get_phrases(self):
-        return self.get_queryset().filter(type='phrase')
+    def all(self, owner=None):
+        return self.get_queryset(owner=owner)
+
+    def get_words(self, owner=None):
+        return self.get_queryset(owner=owner).filter(type='word')
+
+    def get_phrases(self, owner=None):
+        return self.get_queryset(owner=owner).filter(type='phrase')
+
+    def get_recent_obj(self, owner=None):
+        return self.get_queryset(owner=owner)[:15]
+
 
 class Vocabulary(models.Model):
     TYEPS_CHOICES = (

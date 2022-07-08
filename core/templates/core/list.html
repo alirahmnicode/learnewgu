@@ -13,9 +13,10 @@
     </form>
 </div>
 
-<div>
+<div class="vocabs">
     {% for obj in filter.qs %}
     <div>
+        <div>{{ forloop.counter }}</div>
         <div>{{obj.text}}</div>
         <div>{{obj.translation}}</div>
         <div class="view-count">{{obj.review_count}}</div>
@@ -36,5 +37,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{% static 'js/view.js' %}"></script>
-<script src="{% static 'js/scrollLoader.js' %}"></script>
+<script src="{% static 'js/loader.js' %}"></script>
 {% endblock js %}
