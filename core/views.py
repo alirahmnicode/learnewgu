@@ -13,13 +13,8 @@ from .listing_obj import Listing
 
 class Dashboard(View):
     def get(self, request):
-        words = Vocabulary.objects.get_words()
-        phrases = Vocabulary.objects.get_phrases()
-        content = {
-            'words':words,
-            'phrases':phrases
-        }
-        return render(request, 'core/dashboard.html', content)
+        obj_list = Vocabulary.objects.get_recent_obj()
+        return render(request, 'core/dashboard.html', {'obj_list':obj_list})
 
 
 class AddObject(View):
