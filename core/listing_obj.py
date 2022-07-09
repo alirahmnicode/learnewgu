@@ -11,6 +11,14 @@ class Listing:
             queryset = self.queryset[self.previous_objects:self.next_objects]
             return self.list_objects(queryset)
 
+    def formating_date(self, date):
+        items = date.split(' ')[0]
+        date = ''
+        for d in reversed(items.split('-')):
+            date+= f"{d} "
+        return date
+
+
     def list_objects(self, queryset):
         data = []
         if queryset:
@@ -24,7 +32,7 @@ class Listing:
                     "translation": obj.translation,
                     "type": obj.type,
                     "review_count": obj.review_count,
-                    "created": obj.created,
+                    "created": self.formating_date(str(obj.created)),
                 }
                 data.append(item)
         return data
