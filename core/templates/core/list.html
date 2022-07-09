@@ -38,7 +38,7 @@
                         <span>type : {{obj.type}}</span>
                     </div>
                     <div class="mr">
-                        <span>review count : {{obj.review_count}}</span>
+                        <span>review count :</span> <span class="review-count"> {{obj.review_count}}</span>
                     </div>
                 </div>
                 <div class="manage">
@@ -49,7 +49,7 @@
                         <a href="{% url 'core:delete' pk=obj.pk %}">Delete</a>
                     </div>
                     <div class="mr">
-                        <input type="hidden" name="pk" value="${response.objects[i].pk}">
+                        <input type="hidden" name="pk" value="{{obj.pk}}">
                         <button class="viewed">Viewed</button>
                     </div>
                 </div>
@@ -67,6 +67,6 @@
 {% block js %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="{% static 'js/view.js' %}"></script>
+<script src="{% static 'js/view.js' %}?{% now 'U' %}"></script>
 <script src="{% static 'js/loader.js' %}?{% now 'U' %}"></script>
 {% endblock js %}

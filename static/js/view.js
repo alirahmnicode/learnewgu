@@ -15,13 +15,18 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 
+var host = window.location.host
+
+
 $(document).ready(function () {
     $(".viewed").click(function () {
-        thisBtn = this
         // get this vocab pk
+        thisBtn = this
         pk = getPk(thisBtn)
+        view_url = `http://${host}/vocab/review/${pk}/`
+        
         // send ajax request
-        url = `http://localhost:8000/vocab/review/${pk}/`
+        url = view_url
         $.ajax(url, {
             type:'POST',
             headers: {'X-CSRFToken': csrftoken},
@@ -30,6 +35,7 @@ $(document).ready(function () {
                 getCountBox(thisBtn).textContent = response['count']
             }
         })
+        
     });
 });
 
@@ -39,5 +45,5 @@ function getPk(obj) {
 }
 
 function getCountBox(obj) {
-    return obj.parentElement.parentElement.children[2]
+    return obj.parentElement.parentElement.parentElement.children[0].children[1].lastElementChild
 }
