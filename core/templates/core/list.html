@@ -5,30 +5,60 @@
 <title>list of vocabulary</title>
 {% endblock head %}
 
-{% block content %}
-<div class="filters">
-    <form method="get">
-        {{ filter.form.as_p }}
-        <input type="submit" />
-    </form>
-</div>
+{% block nav %}
+{% include 'inc/nav.html' %}
+{% endblock nav %}
 
-<div class="vocabs">
-    {% for obj in filter.qs %}
-    <div>
-        <div>{{ forloop.counter }}</div>
-        <div>{{obj.text}}</div>
-        <div>{{obj.translation}}</div>
-        <div class="view-count">{{obj.review_count}}</div>
-        <div>{{obj.type}}</div>
-        <div>{{obj.created}}</div>
-        <div>
-            <input type="hidden" name="pk" value="{{vocab.pk}}">
-            <button class="viewed">Viewed</button>
-        </div>
+{% block content %}
+<div class="content">
+    <div class="filters">
+        <form method="get">
+            {{ filter.form.as_p }}
+            <input type="submit" value="filter"/>
+        </form>
     </div>
-    <hr>
-    {% endfor %}
+    <div class="vocabs">
+        {% for obj in filter.qs %}
+        <div class="box">
+            <div>
+                <div class="text mr">
+                    <div class="mr">{{forloop.counter}}</div>
+                    <div class="mr"><span>{{obj.text}}</span></div>
+                    <div class="mr">
+                        <button>see trns</button>
+                    </div>
+                </div>
+                <div class="translation mr">
+                    <span>{{obj.translation}}</span>
+                </div>
+            </div>
+            <div>
+                <div class="info">
+                    <div class="mr">
+                        <span>type : {{obj.type}}</span>
+                    </div>
+                    <div class="mr">
+                        <span>review count : {{obj.review_count}}</span>
+                    </div>
+                </div>
+                <div class="manage">
+                    <div class="mr">
+                        <a href="{% url 'core:edit' pk=obj.pk %}">Edit</a>
+                    </div>
+                    <div class="mr">
+                        <a href="{% url 'core:delete' pk=obj.pk %}">Delete</a>
+                    </div>
+                    <div class="mr">
+                        <a href="{% url 'core:delete' pk=obj.pk %}">Viewed</a>
+                    </div>
+                </div>
+                <div class="date">
+                    <span>{{obj.created|date:"M d, Y"}}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock content %}
@@ -37,5 +67,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{% static 'js/view.js' %}"></script>
-<script src="{% static 'js/loader.js' %}"></script>
+<script src="{% static 'js/loader.js' %}?{% now 'U' %}"></script>
 {% endblock js %}

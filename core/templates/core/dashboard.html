@@ -9,24 +9,49 @@
 {% endblock nav %}
 
 
-
 {% block content %}
-<a href="{% url 'core:add' %}">Add+</a>
-<a href="{% url 'core:list' %}">List</a>
-<a href="{% url 'core:random' %}">random review</a>
-<hr>
 
 <div class="content">
-
-    {% for word in words %}
-    <div>
-        <div><a href="{% url 'core:detail' pk=word.pk %}">{{word}}</a></div>
-        <div>
-            <a href="{% url 'core:edit' pk=word.pk %}">Edit</a>
-            <a href="{% url 'core:delete' pk=word.pk %}">Delete</a>
+    <div class="vocabs">
+        {% for obj in obj_list %}
+        <div class="box">
+            <div>
+                <div class="text mr">
+                    <div class="mr"><span>{{obj.text}}</span></div>
+                    <div class="mr">
+                        <button>see trns</button>
+                    </div>
+                </div>
+                <div class="translation mr">
+                    <span>{{obj.translation}}</span>
+                </div>
+            </div>
+            <div>
+                <div class="info">
+                    <div class="mr">
+                        <span>type : {{obj.type}}</span>
+                    </div>
+                    <div class="mr">
+                        <span>review count : {{obj.review_count}}</span>
+                    </div>
+                </div>
+                <div class="manage">
+                    <div class="mr">
+                        <a href="{% url 'core:edit' pk=obj.pk %}">Edit</a>
+                    </div>
+                    <div class="mr">
+                        <a href="{% url 'core:delete' pk=obj.pk %}">Delete</a>
+                    </div>
+                    <div class="mr">
+                        <a href="{% url 'core:delete' pk=obj.pk %}">Viewed</a>
+                    </div>
+                </div>
+                <div class="date">
+                    <span>{{obj.created|date:"M d, Y"}}</span>
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-
 </div>
 {% endblock content %}
