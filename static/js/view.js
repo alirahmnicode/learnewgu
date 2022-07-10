@@ -1,3 +1,5 @@
+var host = window.location.host
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -15,8 +17,6 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 
-var host = window.location.host
-
 
 $(document).ready(function () {
     $(".viewed").click(function () {
@@ -24,20 +24,46 @@ $(document).ready(function () {
         thisBtn = this
         pk = getPk(thisBtn)
         view_url = `http://${host}/vocab/review/${pk}/`
-        
         // send ajax request
         url = view_url
         $.ajax(url, {
-            type:'POST',
-            headers: {'X-CSRFToken': csrftoken},
-            success:function(response){
+            type: 'POST',
+            headers: { 'X-CSRFToken': csrftoken },
+            success: function (response) {
                 // update html
-                getCountBox(thisBtn).textContent = response['count']
+                if ($(".random-review").data().review === 'random') {
+                    // request sended from random page 
+                    getNewVocab()
+                } else {
+                    getCountBox(thisBtn).textContent = response['count']
+                }
             }
         })
-        
     });
 });
+
+
+var nextBtn = $("#next")
+
+nextBtn.click(function (){
+    getNewVocab()
+})
+
+function getNewVocab() {
+    var view_url = `http://${host}/vocab/random-review/`
+    var url = view_url
+    $.ajax(url, {
+        type: 'GET',
+        success: function (response) {
+            // update html
+            $("#text")[0].textContent = response.object['text']
+            $("#translation")[0].textContent = response.object['translation']
+            $("#type")[0].textContent = response.object['type']
+            $("#date")[0].textContent = response.object['date']
+            $("#r-count")[0].textContent = response.object['review_count']
+        }
+    })
+}
 
 
 function getPk(obj) {

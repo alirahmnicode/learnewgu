@@ -9,6 +9,7 @@ from .models import Vocabulary
 from .forms import VocabulayForm
 from .filters import VocabFilter
 from .listing_obj import Listing
+from .ajax import is_ajax
 
 
 class Dashboard(View):
@@ -80,6 +81,10 @@ class ReviewVocab(View):
 
 class RandomReview(View):
     def get(self, request):
-        items = list(Vocabulary.objects.all(owner=request.user))
+        items = Vocabulary.objects.all(owner=request.user).values('pk', 'text', 'translation',
+        'type', 'review_count', 'created')
         random_item = random.choice(items)
-        return render(request, 'core/random_review.html', {'obj':random_item})
+        if is_ajax(request):
+            return JsonResponse({'object': random_item})
+        else:
+            return render(request, 'core/random_review.html', {'obj':random_item})

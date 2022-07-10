@@ -52,21 +52,22 @@ nav>a {
 .text button {
     padding: 0 3px;
     background-color: #C84B31;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
     color: #fff;
     font-size: 13px;
 }
 
 .manage {
     display: flex;
+    align-items: center;
+}
+
+.manage>div[class="mr"] {
+    padding: 5px 10px;
 }
 
 .manage>div {
-    padding: 5px 10px;
-    background-color: #2D4263;
     border-radius: 3px;
+    background-color: #2D4263;
 }
 
 .manage a {
@@ -113,10 +114,36 @@ nav>a {
 }
 
 .viewed {
-    border: none;
     background: none;
     color: royalblue;
     font-family: sans-serif;
-    font-size: 16px;
+
     cursor: pointer;
+}
+
+.random_review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px;
+}
+
+.control {
+    margin-top: 20px;
+    display: flex;
+    align-items: center
+}
+
+.control button {
+    margin: 0 10px;
+    background: #C84B31;
+    color: #fff;
+}
+
+.btn {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 7px;
+    cursor: pointer;
+    font-size: 15px;
 }
