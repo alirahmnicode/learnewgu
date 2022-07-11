@@ -75,6 +75,7 @@ class ListVocabView(View):
 class ReviewVocab(View):
     def post(self, request, **kwargs):
         vocab = get_object_or_404(Vocabulary, pk=kwargs['pk'])
+        print(vocab)
         count = vocab.review()
         return JsonResponse({'count':count})
     
@@ -82,7 +83,7 @@ class ReviewVocab(View):
 class RandomReview(View):
     def get(self, request):
         items = Vocabulary.objects.all(owner=request.user).values('pk', 'text', 'translation',
-        'type', 'review_count', 'created')
+                                            'type', 'review_count', 'created')
         random_item = random.choice(items)
         if is_ajax(request):
             return JsonResponse({'object': random_item})
