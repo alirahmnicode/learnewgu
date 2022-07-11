@@ -20,6 +20,7 @@ const csrftoken = getCookie('csrftoken');
 
 $(document).ready(function () {
     $(".viewed").click(function () {
+        console.log('ali')
         // get this vocab pk
         thisBtn = this
         pk = getPk(thisBtn)
@@ -61,6 +62,7 @@ function getNewVocab() {
             $("#type")[0].textContent = response.object['type']
             $("#date")[0].textContent = response.object['date']
             $("#r-count")[0].textContent = response.object['review_count']
+            $("input[name=pk]")[0].value = response.object['pk']
         }
     })
 }
