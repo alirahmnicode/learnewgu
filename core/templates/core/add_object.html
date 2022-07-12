@@ -1,11 +1,14 @@
+{% extends 'base.html' %}
 {% block head %}
 <title>add</title>
 {% endblock head %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Add">
-</form>
+<div class="add">
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Add">
+    </form>
+</div>
 {% endblock content %}

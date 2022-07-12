@@ -2,9 +2,11 @@
 
 
 {% block content %}
+<div class="delete">
     <form method="post">
+        <p>are you sure you want delete this vocabulary?</p>
         {% csrf_token %}
         <input type="submit" value="Delete">
     </form>
+</div>
 {% endblock content %}
-    

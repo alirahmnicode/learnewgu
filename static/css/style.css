@@ -84,18 +84,21 @@ nav>a {
     margin: 10px 10px 10px 3px;
 }
 
-.filters {
+.filters,
+.add,
+.delete,
+.edit {
     display: flex;
     justify-content: center;
     margin: 20px 0;
 }
 
-.filters form>p {
+form>p {
     margin-bottom: 10px;
     color: #fff;
 }
 
-.filters form input {
+form input {
     background-color: #121212;
     color: #fff;
     border: 1px solid #2D4263;
@@ -103,7 +106,7 @@ nav>a {
     outline: none;
 }
 
-.filters form input[type=submit] {
+form input[type=submit] {
     background-color: #2D4263;
     border: none;
     border-radius: 5px;
@@ -112,7 +115,13 @@ nav>a {
     font-size: 16px;
     font-family: sans-serif;
 }
-
+textarea {
+    background-color: #2D4263;
+    border: 1px solid #C84B31;
+    outline: none;
+    padding: 5px;
+    color: #fff;
+}
 .viewed {
     background: none;
     color: royalblue;
