@@ -1,4 +1,4 @@
-var host = window.location.host
+var host = window.location.origin
 
 function getCookie(name) {
     let cookieValue = null;
@@ -20,11 +20,10 @@ const csrftoken = getCookie('csrftoken');
 
 $(document).ready(function () {
     $(".viewed").click(function () {
-        console.log('ali')
         // get this vocab pk
         thisBtn = this
         pk = getPk(thisBtn)
-        view_url = `http://${host}/vocab/review/${pk}/`
+        view_url = `${host}/vocab/review/${pk}/`
         // send ajax request
         url = view_url
         $.ajax(url, {
@@ -51,7 +50,7 @@ nextBtn.click(function (){
 })
 
 function getNewVocab() {
-    var view_url = `http://${host}/vocab/random-review/`
+    var view_url = `${host}/vocab/random-review/`
     var url = view_url
     $.ajax(url, {
         type: 'GET',
