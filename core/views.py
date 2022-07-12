@@ -56,21 +56,19 @@ class DetailVocabView(DetailView):
 class ListVocabView(View):
 
     def get(self, request, **kwargs):
-
-        end_articles = request.GET.get('n')
-        # if request not ajax
-        if not end_articles:
-            f = VocabFilter(self.request.GET, 
-                queryset=Vocabulary.objects.get_recent_obj(owner=request.user))
-            return render(request, 'core/list.html', {'filter':f})
-        # if send request with ajax
-        else:
+        
+        if is_ajax(request):
+            end_articles = request.GET.get('n')
             queryset = Vocabulary.objects.all(owner=request.user)
             listing = Listing(queryset=queryset)
             listing.range_of_objects(15, end_articles)
             data = listing.get_objects()
             return JsonResponse({'objects': data})
-
+        else:
+            f = VocabFilter(self.request.GET, 
+                queryset=Vocabulary.objects.get_recent_obj(owner=request.user))
+            return render(request, 'core/list.html', {'filter':f})
+            
 
 class ReviewVocab(View):
     def post(self, request, **kwargs):

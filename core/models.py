@@ -20,7 +20,7 @@ class VocabManager(models.Manager):
         return self.get_queryset(owner=owner).filter(type='phrase')
 
     def get_recent_obj(self, owner=None):
-        return self.get_queryset(owner=owner)[:15]
+        return self.get_queryset(owner=owner)
 
 
 class Vocabulary(models.Model):

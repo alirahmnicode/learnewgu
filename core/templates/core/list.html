@@ -18,7 +18,7 @@
         </form>
     </div>
     <div class="vocabs">
-        {% for obj in filter.qs %}
+        {% for obj in filter.qs|slice:":15" %}
         <div class="box">
             <div>
                 <div class="text mr">
