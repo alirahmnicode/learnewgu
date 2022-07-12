@@ -13,7 +13,7 @@ class Listing:
     def get_objects(self):
         if self.queryset:
             queryset = self.queryset[self.previous_objects:self.next_objects]
-            self.add_counter()
+            self.add_item()
             return queryset
 
     def formating_date(self, date):
@@ -23,10 +23,9 @@ class Listing:
             date+= f"{d} "
         return date
 
-    def add_counter(self):
+    def add_item(self):
         counter = 15
         for obj in self.queryset:
-            print(obj['created'])
-            print(dateformat.format(obj['created'],'%d-%m-%Y %H:%M:%S'))
             counter+=1
             obj['counter'] = counter
+            obj['created'] = dateformat.format(obj['created'],'d,M Y')
