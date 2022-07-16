@@ -2,13 +2,11 @@ import random
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 from django.views.generic import UpdateView, DeleteView, DetailView, ListView
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 from .models import Vocabulary
 from .forms import VocabulayForm
 from .filters import VocabFilter
-from .listing_obj import Listing
 from .ajax import is_ajax
 
 
@@ -53,27 +51,19 @@ class DetailVocabView(DetailView):
         return Vocabulary.objects.filter(user=self.request.user)
 
 
-class ListVocabView(View):
-
-    def get(self, request, **kwargs):
-        
-        if is_ajax(request):
-            end_articles = request.GET.get('n')
-            queryset = Vocabulary.objects.all(owner=request.user)
-            listing = Listing(queryset=queryset)
-            listing.range_of_objects(15, end_articles)
-            data = listing.get_objects()
-            return JsonResponse({'objects': data})
-        else:
-            f = VocabFilter(self.request.GET, 
+def listing(request):
+    filter = VocabFilter(request.GET, 
                 queryset=Vocabulary.objects.get_recent_obj(owner=request.user))
-            return render(request, 'core/list.html', {'filter':f})
-            
+    paginator = Paginator(filter.qs, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)            
+    context = {'page_obj': page_obj, 'filter_form':filter.form}
+    return render(request, 'core/list.html', context)
+
 
 class ReviewVocab(View):
     def post(self, request, **kwargs):
         vocab = get_object_or_404(Vocabulary, pk=kwargs['pk'])
-        print(vocab)
         count = vocab.review()
         return JsonResponse({'count':count})
     

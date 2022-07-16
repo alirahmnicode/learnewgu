@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
 
 {% block head %}
 <title>list of vocabulary</title>
@@ -13,12 +14,12 @@
 <div class="content">
     <div class="filters">
         <form method="get">
-            {{ filter.form.as_p }}
+            {{ filter_form.as_p }}
             <input type="submit" value="filter" />
         </form>
     </div>
     <div class="vocabs">
-        {% for obj in filter.qs|slice:":15" %}
+        {% for obj in page_obj %}
         <div class="box">
             <div>
                 <div class="text mr">
@@ -60,6 +61,26 @@
         </div>
         {% endfor %}
     </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="{{request.get_full_path|url}}page=1">&laquo; first</a>
+            <a href="{{request.get_full_path|url}}page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+            {% if 'review_count' in request.get_full_path%}
+            <a href="{{request.get_full_path|url}}page={{ page_obj.next_page_number }}">next</a>
+            {% else %}
+            <a href="{{request.get_full_path|url}}page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+
+            <a href="{{request.get_full_path|url}}page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 
 {% endblock content %}
@@ -68,5 +89,4 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{% static 'js/view.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'js/loader.js' %}?{% now 'U' %}"></script>
 {% endblock js %}
