@@ -12,7 +12,6 @@ def url(value):
     else:
         url = value
     if ('review_count' in url) or ('type' in url) or ('text' in url):
-        print(url)
         return url+'&'
     else:
         return url+'?'
