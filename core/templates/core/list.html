@@ -12,11 +12,35 @@
 
 {% block content %}
 <div class="content">
-    <div class="filters">
-        <form method="get">
-            {{ filter_form.as_p }}
-            <input type="submit" value="filter" />
-        </form>
+    <div class="s-f">
+        <div class="filters">
+            <form method="get">
+                {{ filter_form.as_p }}
+                <input type="submit" value="filter" />
+            </form>
+        </div>
+        <div class="sort">
+            <div>
+                <span>Date:</span>
+                <a href="{{request.get_full_path|url}}sort_by=-created">
+                    The newest
+                </a>
+                -
+                <a href="{{request.get_full_path|url}}sort_by=created">
+                    The oldest
+                </a>
+            </div>
+            <div>
+                <span>Review count:</span>
+                <a href="{{request.get_full_path|url}}sort_by=-review_count">
+                    The most
+                </a>
+                -
+                <a href="{{request.get_full_path|url}}sort_by=review_count">
+                    The least
+                </a>
+            </div>
+        </div>
     </div>
     <div class="vocabs">
         {% for obj in page_obj %}
@@ -68,7 +92,7 @@
                 src="https://img.icons8.com/carbon-copy/100/000000/circled-chevron-left.png" /></a>
         {% endif %}
         <span class="current">
-             {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+            {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
         </span>
         {% if page_obj.has_next %}
         <a href="{{request.get_full_path|url}}page={{ page_obj.next_page_number }}"><img

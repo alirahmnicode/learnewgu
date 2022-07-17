@@ -174,7 +174,32 @@ textarea {
 
 .pagination img {
     width: 50px;
-    -webkit-filter: invert(100%); /* Safari/Chrome */
+    -webkit-filter: invert(100%);
+    /* Safari/Chrome */
     filter: invert(100%);
 }
 
+
+.s-f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.sort {
+    color: #fff;
+}
+
+.sort>div {
+    margin: 10px auto;
+}
+
+.sort a {
+    color: #bfcfff;;
+}
+
+.s-f>div {
+    margin: 50px;
+}
