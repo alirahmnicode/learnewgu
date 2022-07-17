@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 from .models import Vocabulary
 from .forms import VocabulayForm
 from .filters import VocabFilter
+from .sorting import SortObject
 from .ajax import is_ajax
 
 
@@ -52,9 +53,10 @@ class DetailVocabView(DetailView):
 
 
 def listing(request):
-    filter = VocabFilter(request.GET, 
-                queryset=Vocabulary.objects.get_recent_obj(owner=request.user))
-    paginator = Paginator(filter.qs, 20)
+    queryset = Vocabulary.objects.get_recent_obj(owner=request.user)
+    filter = VocabFilter(request.GET, queryset=queryset)
+    sorted_obj = SortObject(request.GET, queryset=filter.qs)
+    paginator = Paginator(sorted_obj.qs, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)            
     context = {'page_obj': page_obj, 'filter_form':filter.form}
