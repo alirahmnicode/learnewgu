@@ -12,7 +12,10 @@
 
 {% block content %}
 <div class="content">
-    <div class="s-f">
+    <div class="filter-btn">
+        <button class="btn accordion" data-box="filter">Filter&Sort</button>
+    </div>
+    <div class="s-f close-box">
         <div class="filters">
             <form method="get">
                 {{ filter_form.as_p }}
@@ -49,11 +52,11 @@
                 <div class="text mr">
                     <div class="mr">{{forloop.counter}}</div>
                     <div class="mr"><span>{{obj.text}}</span></div>
-                    <div class="mr">
-                        <button class="btn">see trns</button>
+                    <div class="mr ">
+                        <button class="btn accordion" data-box="translation">see trns</button>
                     </div>
                 </div>
-                <div class="translation mr">
+                <div class="translation mr close-box">
                     <span>{{obj.translation}}</span>
                 </div>
             </div>
@@ -108,4 +111,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{% static 'js/view.js' %}?{% now 'U' %}"></script>
+<script src="{% static 'js/app.js' %}?{% now 'U' %}"></script>
 {% endblock js %}

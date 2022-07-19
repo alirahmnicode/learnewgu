@@ -203,3 +203,27 @@ textarea {
 .s-f>div {
     margin: 50px;
 }
+
+.filter-btn {
+    background-color: #2D4263;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.close-box {
+    overflow: hidden;
+    height: 0;
+    transition: .5s;
+}
+.translation.active {
+    height: 20px;
+}
+
+
+.s-f.active{
+    height: 250px;
+}

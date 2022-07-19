@@ -13,10 +13,10 @@
                     <span id="text">{{obj.text}}</span>
                 </div>
                 <div class="mr">
-                    <button class="btn">see translation</button>
+                    <button class="btn accordion" data-box="translation">see translation</button>
                 </div>
             </div>
-            <div class="translation mr">
+            <div class="translation mr close-box">
                 <span id="translation">{{obj.translation}}</span>
             </div>
         </div>
@@ -56,4 +56,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{% static 'js/view.js' %}?{% now 'U' %}"></script>
+<script src="{% static 'js/app.js' %}?{% now 'U' %}"></script>
 {% endblock js %}
