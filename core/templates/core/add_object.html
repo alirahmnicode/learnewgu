@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block head %}
+{% load static %}
 <title>add</title>
 {% endblock head %}
 
+{% block nav %}
+{% include 'inc/nav.html' %}
+{% endblock nav %}
 {% block content %}
 <div class="add">
     <form method="post">
@@ -12,3 +16,9 @@
     </form>
 </div>
 {% endblock content %}
+
+{% block js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{% static 'js/translate.js'%}?{% now 'U' %}"></script>
+{% endblock js %}
