@@ -1,3 +1,8 @@
+from django.http import JsonResponse
 from django.shortcuts import render
+from .translate import translate_text
 
-# Create your views here.
+
+def translate(request):
+    text = request.GET.get('text')
+    return JsonResponse(translate_text(text, 'fa'), safe=False)
