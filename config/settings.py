@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # local apps
     'core.apps.CoreConfig',
     'translate.apps.TranslateConfig',
+    'category.apps.CategoryConfig',
 ]
 
 MIDDLEWARE = [
