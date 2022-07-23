@@ -1,3 +1,4 @@
+var host = window.location.origin
 var textField = $('#id_text')
 var translationField = $('#id_translation')
 
@@ -6,7 +7,7 @@ textField.keyup(function () {
     const target = 'fa'
     if (text != '') {
         // send ajax
-        const url = `http://localhost:8000/translate/text/?text=${text}`
+        const url = `${host}/translate/text/?text=${text}`
         $.ajax({
             type: 'GET',
             url: url,
