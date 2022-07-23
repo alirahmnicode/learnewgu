@@ -13,7 +13,7 @@ from .ajax import is_ajax
 
 class Dashboard(View):
     def get(self, request):
-        obj_list = Vocabulary.objects.get_recent_obj()
+        obj_list = Vocabulary.objects.get_recent_obj(owner=request.user)
         return render(request, 'core/dashboard.html', {'obj_list':obj_list})
 
 
