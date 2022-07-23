@@ -1,3 +1,23 @@
+body {
+    color: #fff;
+}
+a {
+    color: #fff;
+}
+
 .container {
     display: flex;
+}
+
+.content {
+    flex: 70%;
+}
+
+.side {
+    flex: 30%;
+    text-align: end;
+}
+
+.items > div{
+    margin: 10px;
 }

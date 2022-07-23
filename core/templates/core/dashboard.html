@@ -61,10 +61,30 @@
     </div>
     <div class="side">
         <div class="items">
-            <a href="{% url 'core:add' %}">Add+</a>
-            <a href="{% url 'core:list' %}">List</a>
-            <a href="{% url 'core:random' %}">Random review</a>
-            <a href="{% url 'category:add' %}">Add Category</a>
+            <div>
+                <a href="{% url 'core:add' %}">Add+</a>
+            </div>
+            <div>
+                <a href="{% url 'core:list' %}">List</a>
+            </div>
+            <div>
+                <a href="{% url 'core:random' %}">Random review</a>
+            </div>
+            <div>
+                <a href="{% url 'category:add' %}">Add Category</a>
+            </div>
+        </div>
+        <div class="categories">
+            <div>
+                <span>{{categories.count}} Categories</span>
+            </div>
+            <div>
+                {% for obj in categories %}
+                    <div class="category">
+                        <a href="">{{obj}}</a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
