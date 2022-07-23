@@ -10,7 +10,10 @@ class VocabManager(models.Manager):
             return queryset.order_by('-created')
 
     def all(self, owner=None):
-        return self.get_queryset(owner=owner)
+        if owner == None:
+            return self.get_queryset()
+        else:
+            return self.get_queryset(owner=owner)
 
     def get_words(self, owner=None):
         return self.get_queryset(owner=owner).filter(type='word')
