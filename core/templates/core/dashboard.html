@@ -81,7 +81,7 @@
             <div>
                 {% for obj in categories %}
                     <div class="category">
-                        <a href="">{{obj}}</a>
+                        <a href="{% url 'category:detail' pk=obj.pk %}">{{obj}}</a>
                     </div>
                 {% endfor %}
             </div>

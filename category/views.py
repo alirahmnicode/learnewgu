@@ -1,6 +1,5 @@
-from django.shortcuts import render
+from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
 from .models import Category
 from .forms import CategoryForm
 
@@ -23,3 +22,10 @@ class CreateCategoryView(CreateView):
         obj.user = self.request.user
         self.obj = obj.save()
         return super().form_valid(form)
+
+
+class DetailCategoryView(DetailView):
+    template_name = 'category/detail.html'
+
+    def get_queryset(self):
+        return Category.objects.filter(user=self.request.user, pk=self.kwargs['pk'])
