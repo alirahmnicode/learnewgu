@@ -53,7 +53,7 @@
                     <div class="mr">{{forloop.counter}}</div>
                     <div class="mr"><span>{{obj.text}}</span></div>
                     <div class="mr ">
-                        <button class="btn accordion" data-box="translation">see trns</button>
+                        <button class="btn accordion btn-linear" data-box="translation">see trns</button>
                     </div>
                 </div>
                 <div class="translation mr close-box">
@@ -70,10 +70,10 @@
                     </div>
                 </div>
                 <div class="manage">
-                    <div class="mr">
+                    <div class="mb">
                         <a href="{% url 'core:edit' pk=obj.pk %}">Edit</a>
                     </div>
-                    <div class="mr">
+                    <div class="mb">
                         <a href="{% url 'core:delete' pk=obj.pk %}">Delete</a>
                     </div>
                     <div>

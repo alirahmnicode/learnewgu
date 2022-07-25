@@ -6,60 +6,15 @@
 <title>dahboard</title>
 {% endblock head %}
 
-{% block nav %}
-{% include 'inc/nav.html' %}
-{% endblock nav %}
-
 
 {% block content %}
 
 <div class="container">
-    <div class="content">
-        <div class="vocabs">
-            {% for obj in obj_list|slice:"20" %}
-            <div class="box">
-                <div>
-                    <div class="text mr">
-                        <div class="mr">{{forloop.counter}}</div>
-                        <div class="mr"><span>{{obj.text}}</span></div>
-                        <div class="mr ">
-                            <button class="btn accordion" data-box="translation">see trns</button>
-                        </div>
-                    </div>
-                    <div class="translation mr close-box">
-                        <span>{{obj.translation}}</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="info">
-                        <div class="mr">
-                            <span>type : {{obj.type}}</span>
-                        </div>
-                        <div class="mr">
-                            <span>review count :</span> <span class="review-count"> {{obj.review_count}}</span>
-                        </div>
-                    </div>
-                    <div class="manage">
-                        <div class="mr">
-                            <a href="{% url 'core:edit' pk=obj.pk %}">Edit</a>
-                        </div>
-                        <div class="mr">
-                            <a href="{% url 'core:delete' pk=obj.pk %}">Delete</a>
-                        </div>
-                        <div>
-                            <input type="hidden" name="pk" value="{{obj.pk}}">
-                            <button class="btn viewed random-review" data-review="list">Viewed</button>
-                        </div>
-                    </div>
-                    <div class="date">
-                        <span>{{obj.created|date:"M d, Y"}}</span>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
     <div class="side">
+        <div class="side-title">
+            <span>Learnewgu</span>
+            <div class="border"></div>
+        </div>
         <div class="items">
             <div>
                 <a href="{% url 'core:add' %}">Add+</a>
@@ -79,12 +34,58 @@
                 <span>{{categories.count}} Categories</span>
             </div>
             <div>
-                {% for obj in categories %}
-                    <div class="category">
-                        <a href="{% url 'category:detail' pk=obj.pk %}">{{obj}}</a>
-                    </div>
-                {% endfor %}
+                <ul>
+                    {% for obj in categories %}
+                    <li><a href="{% url 'category:detail' pk=obj.pk %}">{{obj}}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
+        </div>
+    </div>
+    <div class="content">
+        {% include 'inc/nav.html' %}
+        <div class="vocabs">
+            {% for obj in obj_list|slice:"20" %}
+            <div class="box">
+                <div>
+                    <div class="text mr">
+                        <div class="mr">{{forloop.counter}}</div>
+                        <div class="mr"><span>{{obj.text}}</span></div>
+                        <div class="mr ">
+                            <button class="btn accordion btn-linear" data-box="translation">see trns</button>
+                        </div>
+                    </div>
+                    <div class="translation mr close-box">
+                        <span>{{obj.translation}}</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="info">
+                        <div class="mr">
+                            <span>type : {{obj.type}}</span>
+                        </div>
+                        <div class="mr">
+                            <span>review count :</span> <span class="review-count"> {{obj.review_count}}</span>
+                        </div>
+                    </div>
+                    <div class="manage">
+                        <div class="mb">
+                            <a href="{% url 'core:edit' pk=obj.pk %}">Edit</a>
+                        </div>
+                        <div class="mb">
+                            <a href="{% url 'core:delete' pk=obj.pk %}">Delete</a>
+                        </div>
+                        <div>
+                            <input type="hidden" name="pk" value="{{obj.pk}}">
+                            <button class="btn viewed random-review" data-review="list">Viewed</button>
+                        </div>
+                    </div>
+                    <div class="date">
+                        <span>{{obj.created|date:"M d, Y"}}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
