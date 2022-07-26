@@ -1,4 +1,5 @@
 var host = window.location.origin
+var fullPath = window.location.href
 
 function getCookie(name) {
     let cookieValue = null;
@@ -45,7 +46,7 @@ $(document).ready(function () {
 
 var nextBtn = $("#next")
 
-nextBtn.click(function (){
+nextBtn.click(function () {
     getNewVocab()
 })
 
@@ -56,8 +57,13 @@ function getNewVocab() {
         type: 'GET',
         success: function (response) {
             // update html
-            $("#text")[0].textContent = response.object['text']
-            $("#translation")[0].textContent = response.object['translation']
+            if (fullPath.split('ln=').length > 1) {
+                $("#text")[0].textContent = response.object['translation']
+                $("#translation")[0].textContent = response.object['text']
+            } else {
+                $("#text")[0].textContent = response.object['text']
+                $("#translation")[0].textContent = response.object['translation']
+            }
             $("#type")[0].textContent = response.object['type']
             $("#date")[0].textContent = response.object['date']
             $("#r-count")[0].textContent = response.object['review_count']

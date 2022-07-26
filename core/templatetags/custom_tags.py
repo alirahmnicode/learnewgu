@@ -16,4 +16,11 @@ def url(value):
     else:
         return url+'?'
 
+
+def get_params(url, value):
+    if value in url:
+        return True
+
+
 register.filter('url', url)
+register.filter('params', get_params)

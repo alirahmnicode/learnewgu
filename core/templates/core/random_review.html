@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
 {% block head %}
 <title>{{obj.text}}</title>
 {% endblock head %}
@@ -9,19 +10,33 @@
 {% block content %}
 <div class="random_review">
     <div class="box">
-        <div>
-            <div class="text mr">
-                <div class="mr">
-                    <span id="text">{{obj.text}}</span>
+        {% if request.get_full_path|params:'fa' %}
+            <div>
+                <div class="text mr">
+                    <div class="mr">{{forloop.counter}}</div>
+                    <div class="mr" id="text"><span>{{obj.translation}}</span></div>
+                    <div class="mr ">
+                        <button class="btn accordion btn-linear" data-box="translation">see trns</button>
+                    </div>
                 </div>
-                <div class="mr">
-                    <button class="btn accordion btn-linear" data-box="translation">see translation</button>
+                <div class="translation mr close-box">
+                    <span id="translation">{{obj.text}}</span>
                 </div>
             </div>
-            <div class="translation mr close-box">
-                <span id="translation">{{obj.translation}}</span>
+            {% else %}
+            <div>
+                <div class="text mr">
+                    <div class="mr">{{forloop.counter}}</div>
+                    <div class="mr" id="text"><span>{{obj.text}}</span></div>
+                    <div class="mr ">
+                        <button class="btn accordion btn-linear" data-box="translation">see trns</button>
+                    </div>
+                </div>
+                <div class="translation mr close-box">
+                    <span id="translation">{{obj.translation}}</span>
+                </div>
             </div>
-        </div>
+            {% endif %}
         <div>
             <div class="info">
                 <div class="mr">
@@ -49,6 +64,9 @@
         <div class="mr">
             <input type="hidden" name="pk" value="{{obj.pk}}">
             <button class="btn viewed random-review " data-review="random">Viewed</button>
+        </div>
+        <div>
+            <a href="{{request.get_full_path|url}}ln=fa">convert to farsi</a>
         </div>
     </div>
 </div>
