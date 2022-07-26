@@ -1,0 +1,1 @@
+from .vocab_views import VocabularyListApiView
