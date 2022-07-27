@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'translate.apps.TranslateConfig',
     'category.apps.CategoryConfig',
+    'dictation.apps.DictationConfig',
 ]
 
 MIDDLEWARE = [

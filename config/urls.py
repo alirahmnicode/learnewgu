@@ -8,6 +8,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('translate/', include('translate.urls')),
     path('category/', include('category.urls')),
+    path('dictation/', include('dictation.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
