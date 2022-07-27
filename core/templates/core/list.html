@@ -45,13 +45,14 @@
             </div>
         </div>
         <div>
-            <a href="{{request.get_full_path|url}}ln=fa">convert to farsi</a>
+            <a href="{{request.get_full_path|url}}ln=fa">convert to Farsi</a>
+            <a href="{{request.get_full_path|url}}ln=en">convert to English</a>
         </div>
     </div>
     <div class="vocabs">
         {% for obj in page_obj %}
         <div class="box">
-            {% if request.get_full_path|params:'fa' %}
+            {% if request.get_full_path|reverse:request %}
             <div>
                 <div class="text mr">
                     <div class="mr">{{forloop.counter}}</div>

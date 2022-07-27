@@ -17,10 +17,10 @@ def url(value):
         return url+'?'
 
 
-def get_params(url, value):
-    if value in url:
+def reverse_language(url, request):
+    if request.GET.get('ln') == 'fa':
         return True
 
 
 register.filter('url', url)
-register.filter('params', get_params)
+register.filter('reverse', reverse_language)

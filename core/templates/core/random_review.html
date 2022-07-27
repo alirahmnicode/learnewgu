@@ -10,33 +10,33 @@
 {% block content %}
 <div class="random_review">
     <div class="box">
-        {% if request.get_full_path|params:'fa' %}
-            <div>
-                <div class="text mr">
-                    <div class="mr">{{forloop.counter}}</div>
-                    <div class="mr" id="text"><span>{{obj.translation}}</span></div>
-                    <div class="mr ">
-                        <button class="btn accordion btn-linear" data-box="translation">see trns</button>
-                    </div>
-                </div>
-                <div class="translation mr close-box">
-                    <span id="translation">{{obj.text}}</span>
+        {% if request.get_full_path|reverse:request %}
+        <div>
+            <div class="text mr">
+                <div class="mr">{{forloop.counter}}</div>
+                <div class="mr" id="text"><span>{{obj.translation}}</span></div>
+                <div class="mr ">
+                    <button class="btn accordion btn-linear" data-box="translation">see trns</button>
                 </div>
             </div>
-            {% else %}
-            <div>
-                <div class="text mr">
-                    <div class="mr">{{forloop.counter}}</div>
-                    <div class="mr" id="text"><span>{{obj.text}}</span></div>
-                    <div class="mr ">
-                        <button class="btn accordion btn-linear" data-box="translation">see trns</button>
-                    </div>
-                </div>
-                <div class="translation mr close-box">
-                    <span id="translation">{{obj.translation}}</span>
+            <div class="translation mr close-box">
+                <span id="translation">{{obj.text}}</span>
+            </div>
+        </div>
+        {% else %}
+        <div>
+            <div class="text mr">
+                <div class="mr">{{forloop.counter}}</div>
+                <div class="mr" id="text"><span>{{obj.text}}</span></div>
+                <div class="mr ">
+                    <button class="btn accordion btn-linear" data-box="translation">see trns</button>
                 </div>
             </div>
-            {% endif %}
+            <div class="translation mr close-box">
+                <span id="translation">{{obj.translation}}</span>
+            </div>
+        </div>
+        {% endif %}
         <div>
             <div class="info">
                 <div class="mr">
@@ -60,13 +60,16 @@
         </div>
     </div>
     <div class="control">
-        <button class="btn-linear btn" id="next">next</button>
-        <div class="mr">
-            <input type="hidden" name="pk" value="{{obj.pk}}">
-            <button class="btn viewed random-review " data-review="random">Viewed</button>
+        <div>
+            <button class="btn-linear btn" id="next">next</button>
+            <div class="mr">
+                <input type="hidden" name="pk" value="{{obj.pk}}">
+                <button class="btn viewed random-review " data-review="random">Viewed</button>
+            </div>
         </div>
         <div>
-            <a href="{{request.get_full_path|url}}ln=fa">convert to farsi</a>
+            <a href="{{request.get_full_path|url}}ln=fa">convert to Farsi</a>
+            <a href="{{request.get_full_path|url}}ln=en">convert to English</a>
         </div>
     </div>
 </div>
