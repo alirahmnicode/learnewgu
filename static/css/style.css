@@ -20,7 +20,7 @@ nav {
 }
 
 nav>a {
-    background: linear-gradient(90deg,#1c1c2753, #1c1c27, 80%, #323347);
+    background: linear-gradient(90deg, #1c1c2753, #1c1c27, 80%, #323347);
     color: #fff;
     border-radius: 5px;
     padding: 10px;
@@ -30,7 +30,7 @@ nav>a {
 .vocabs {
     display: flex;
     flex-wrap: wrap;
-    margin:30px;
+    margin: 30px;
 }
 
 .box {
@@ -149,9 +149,20 @@ textarea {
 }
 
 .control {
-    margin-top: 20px;
     display: flex;
-    align-items: center
+    flex-direction: column;
+    align-items: center;
+}
+
+.control>div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control a {
+    color: #d6d5da;
+    margin: 0 10px;
 }
 
 .control button {
