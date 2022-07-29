@@ -8,12 +8,11 @@ from core.ajax import is_ajax
 class FillingView(View):
     def get(self, request, **kwargs):
         pk = request.GET.get('pk')
-        word = Vocabulary.objects.get_random_item(owner=request.user, filter_by='word')
         if is_ajax(request):
-            word = word.values('pk', 'text', 'translation',
-                        'type', 'review_count', 'created')
-            return JsonResponse(data=word)
+            word = Vocabulary.objects.get_random_item(owner=request.user, filter_by='word', values=True)
+            return JsonResponse(data=word, safe=False)
         else:
+            word = Vocabulary.objects.get_random_item(owner=request.user, filter_by='word', values=False)
             if pk:
                 word = get_object_or_404(Vocabulary, pk=pk)
             return render(request, 'dictation/fill.html', {'word':word})
