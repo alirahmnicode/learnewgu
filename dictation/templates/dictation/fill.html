@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block head %}
-    <title>Fill in the blank</title>
+<title>Fill in the blank</title>
 {% endblock head %}
 
 {% block content %}
-    
+<div class="vocab">
+    <div class="data" data-word="{{word}}"></div>
+    <pre class="dictation"></pre>
+    <div>
+        <span>Translation :</span> <span>{{word.translation}}</span>
+    </div>
+    <button class="check-btn">check</button>
+</div>
+
 {% endblock content %}
 
 {% block js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{% static 'js/dictation.js' %}?{% now 'U' %}"></script>
 {% endblock js %}
-    
-    

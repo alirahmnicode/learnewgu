@@ -1,8 +1,7 @@
-var word = $(".data")[0].getAttribute('data-word')
 var html = ''
 var numbers = []
 
-function htmlCreator() {
+function htmlCreator(word) {
     numbers = generateRandomNumber()
     for (let i = 0; i < word.length; i++) {
         if (numbers.includes(i)) {
@@ -30,15 +29,16 @@ function generateRandomNumber() {
     }
     return numbers
 }
-
-htmlCreator()
+var word = $(".data")[0].getAttribute('data-word')
+htmlCreator(word)
 
 var clientText = ''
 
 const checkBtn = $('.check-btn')
 
 checkBtn.click(function () {
-    nodes = document.getElementsByClassName('dictation')[0].childNodes
+    var nodes = document.getElementsByClassName('dictation')[0].childNodes
+    clientText = ''
     for (let i = 0; i < nodes.length; i++) {
         if (nodes[i].tagName == "INPUT") {
             clientText += nodes[i].value
@@ -51,24 +51,34 @@ checkBtn.click(function () {
 
 
 function check() {
+    var word = $(".data")[0].getAttribute('data-word')
     if (word === clientText) {
         var url = window.location.href
         $.ajax({
             type: 'GET',
             url: url,
             success: function (response) {
-                console.log(response)
+                // $('.dictation')[0].innerHTML = ''
+                html = ''
+                $(".data")[0].setAttribute('data-word', response.text)
+                htmlCreator($(".data")[0].getAttribute('data-word'))
             }
         })
     } else {
-        var url = window.location.href
-        $.ajax({
-            type: 'GET',
-            url: url,
-            success: function (response) {
-                console.log(response)
+        verify()
+    }
+}
+
+function verify() {
+    var nodes = document.getElementsByClassName('dictation')[0].childNodes
+    for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i].tagName == "INPUT") {
+            if (nodes[i].value != word[i]) {
+                $(`INPUT[name="${i + 1}"]`).css('background', 'red')
+                $(`INPUT[name="${i + 1}"]`).css('color', '#fff')
+            } else {
+                $(`INPUT[name="${i + 1}"]`).css('background', 'green')
             }
-        })
-        console.log('no')
+        }
     }
 }
