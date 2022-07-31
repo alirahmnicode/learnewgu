@@ -15,7 +15,7 @@ nav {
     border-radius: 0 0 10px 10px;
 }
 
-nav > a {
+nav>a {
     background: #323347;
 }
 
@@ -30,7 +30,7 @@ nav > a {
 
 .side {
     flex: 20%;
-    background: linear-gradient(#323347,40%, #1c1c27, #1c1c2753, #1c1c2721);
+    background: linear-gradient(#323347, 40%, #1c1c27, #1c1c2753, #1c1c2721);
 }
 
 .side-title {
@@ -60,4 +60,45 @@ nav > a {
 
 .categories a {
     color: #acadb5;
+}
+
+@media only screen and (max-width: 850px) {
+    nav {
+        margin-left: 0;
+    }
+
+    nav>div {
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    .nav-btn>div {
+        background-color: #acadb5;
+        width: 30px;
+        height: 2px;
+        margin: 6px 0;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .links {
+        height: 0;
+        overflow: hidden;
+    }
+
+    .side-title {
+        margin: 20px 0 10px 0;
+    }
+
+    .border {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 740px) {
+    .vocabs {
+        justify-content: center;
+    }
 }
