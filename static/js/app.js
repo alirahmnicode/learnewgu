@@ -13,3 +13,14 @@ accordion.click(function () {
     box.classList.toggle("active");
 
 })
+
+var navBtn = $('.nav-btn')
+var itemsBox = $('.side')
+
+navBtn.click(function () {
+    if (itemsBox.width() == 0) {
+        itemsBox.css('width', '200px')
+    } else {
+        itemsBox.css('width', '0px')
+    }
+})

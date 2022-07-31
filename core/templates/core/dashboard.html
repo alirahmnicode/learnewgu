@@ -8,40 +8,41 @@
 
 
 {% block content %}
-
 <div class="container">
     <div class="side">
         <div class="side-title">
-            <span>Learnewgu</span>
+            <span>Learnewgu</span> <span class="nav-btn">&#10094;</span>
             <div class="border"></div>
         </div>
-        <div class="items">
-            <div>
-                <a href="{% url 'core:add' %}">Add+</a>
+        <div class="links">
+            <div class="items">
+                <div>
+                    <a href="{% url 'core:add' %}">Add+</a>
+                </div>
+                <div>
+                    <a href="{% url 'core:list' %}">List</a>
+                </div>
+                <div>
+                    <a href="{% url 'category:add' %}">Add Category</a>
+                </div>
+                <div>
+                    <a href="{% url 'core:random' %}">Random review</a>
+                </div>
+                <div>
+                    <a href="{% url 'dictaion:filling' %}">Dictation practice</a>
+                </div>
             </div>
-            <div>
-                <a href="{% url 'core:list' %}">List</a>
-            </div>
-            <div>
-                <a href="{% url 'category:add' %}">Add Category</a>
-            </div>
-            <div>
-                <a href="{% url 'core:random' %}">Random review</a>
-            </div>
-            <div>
-                <a href="{% url 'dictaion:filling' %}">Dictation practice</a>
-            </div>
-        </div>
-        <div class="categories">
-            <div>
-                <span>{{categories.count}} Categories</span>
-            </div>
-            <div>
-                <ul>
-                    {% for obj in categories %}
-                    <li><a href="{% url 'category:detail' pk=obj.pk %}">{{obj}}</a></li>
-                    {% endfor %}
-                </ul>
+            <div class="categories">
+                <div>
+                    <span>{{categories.count}} Categories</span>
+                </div>
+                <div>
+                    <ul>
+                        {% for obj in categories %}
+                        <li><a href="{% url 'category:detail' pk=obj.pk %}">{{obj}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -98,5 +99,4 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{% static 'js/view.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'js/app.js' %}?{% now 'U' %}"></script>
 {% endblock js %}

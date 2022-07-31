@@ -21,7 +21,7 @@ nav>a {
 
 .container {
     display: flex;
-    flex-wrap: wrap;
+    overflow: hidden;
 }
 
 .content {
@@ -31,6 +31,8 @@ nav>a {
 .side {
     flex: 20%;
     background: linear-gradient(#323347, 40%, #1c1c27, #1c1c2753, #1c1c2721);
+    overflow: hidden;
+    transition: .8s;
 }
 
 .side-title {
@@ -63,6 +65,11 @@ nav>a {
 }
 
 @media only screen and (max-width: 850px) {
+    .side {
+        flex: none;
+        width: 0;
+    }
+
     nav {
         margin-left: 0;
     }
@@ -79,21 +86,16 @@ nav>a {
         margin: 6px 0;
     }
 
-    .container {
-        flex-direction: column;
-    }
-
-    .links {
-        height: 0;
-        overflow: hidden;
-    }
-
     .side-title {
         margin: 20px 0 10px 0;
     }
 
     .border {
         display: none;
+    }
+
+    .nav-btn {
+        cursor: pointer;
     }
 }
 
