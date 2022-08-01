@@ -249,6 +249,17 @@ textarea {
     height: 250px;
 }
 
+
+.dic-box {
+    display: inline-block;
+    text-align: center;
+    padding: 20px;
+}
+
+.dic-box > div {
+    margin: 10px 0;
+}
+
 @media only screen and (max-width: 850px) {
     nav {
         margin-left: 0;

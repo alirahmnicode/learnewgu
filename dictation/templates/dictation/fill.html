@@ -5,14 +5,21 @@
 <title>Fill in the blank</title>
 {% endblock head %}
 
+
+{% block nav %}
+    {% include 'inc/nav.html' %}
+{% endblock nav %}
+    
 {% block content %}
-<div class="vocab">
-    <div class="data" data-word="{{word}}"></div>
-    <pre class="dictation"></pre>
-    <div>
-        <span>Translation :</span> <span>{{word.translation}}</span>
+<div class="content" style="display:flex;justify-content:center;margin-top: 50px;">
+    <div class="vocab dic-box" style="background-color: #323347;border-radius: 10px;">
+        <div class="data" data-word="{{word}}"></div>
+        <pre class="dictation"></pre>
+        <div>
+            <span>Translation :</span> <span style="color: #ee6887;">{{word.translation}}</span>
+        </div>
+        <button class="check-btn btn-linear btn">check</button>
     </div>
-    <button class="check-btn">check</button>
 </div>
 
 {% endblock content %}
