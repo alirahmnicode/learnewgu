@@ -31,7 +31,7 @@ nav>a {
 .vocabs {
     display: flex;
     flex-wrap: wrap;
-    margin: 30px;
+    margin: 0 30px;
 }
 
 .box {
@@ -90,7 +90,6 @@ nav>a {
     margin: 10px 10px 10px 3px;
 }
 
-.filters,
 .add,
 .delete,
 .edit {
@@ -101,19 +100,19 @@ nav>a {
 
 form>p {
     margin-bottom: 10px;
-    color: #fff;
+    color: #bfcfff;
 }
 
 form input {
-    background-color: #121212;
+    background-color: #323347;
     color: #fff;
-    border: 1px solid #2D4263;
+    border: 1px solid #121212;
     padding: 5px;
     outline: none;
 }
 
 form input[type=submit] {
-    background-color: #2D4263;
+    background-color: #967edc;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -123,8 +122,8 @@ form input[type=submit] {
 }
 
 textarea {
-    background-color: #2D4263;
-    border: 1px solid #C84B31;
+    background-color: #323347;
+    border: 1px solid #121212;
     outline: none;
     padding: 5px;
     color: #fff;
@@ -180,6 +179,11 @@ textarea {
     font-size: 15px;
 }
 
+.content-list {
+    margin-top: 30px;
+}
+
+
 .pagination {
     text-align: center;
     margin: 30px;
@@ -202,13 +206,20 @@ textarea {
 
 
 .s-f {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    display: none;
+    background-color: #323347;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 90%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
-
+.s-f > .m {
+    margin: 30px 0;
+}
 .sort {
     color: #fff;
 }
@@ -219,14 +230,12 @@ textarea {
 
 .sort a {
     color: #bfcfff;
-}
-
-.s-f>div {
-    margin: 50px;
+    display: block;
+    margin-top: 10px;
 }
 
 .filter-btn {
-    margin: 10px;
+    margin: 10px 10px 10px 30px;
 }
 
 .filter-btn button {
@@ -234,10 +243,20 @@ textarea {
     color: #d6d5da;
 }
 
-.close-box {
-    overflow: hidden;
-    height: 0;
-    transition: .5s;
+.close {
+    margin: 20px;
+    text-align: right;
+}
+
+.close>span {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.convert>a {
+    color: #bfcfff;
+    display: block;
+    margin-top: 10px;
 }
 
 .translation.active {
@@ -246,7 +265,7 @@ textarea {
 
 
 .s-f.active {
-    height: 250px;
+    display: block;
 }
 
 
@@ -256,7 +275,7 @@ textarea {
     padding: 20px;
 }
 
-.dic-box > div {
+.dic-box>div {
     margin: 10px 0;
 }
 

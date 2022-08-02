@@ -11,24 +11,24 @@
 {% endblock nav %}
 
 {% block content %}
-<div class="content">
+<div class="content-list">
     <div class="filter-btn">
         <button class="btn accordion" data-box="filter">Filter&Sort</button>
     </div>
-    <div class="s-f close-box">
-        <div class="filters">
+    <div class="s-f">
+        <div class="close"><span>&#x2715;</span></div>
+        <div class="filters m">
             <form method="get">
                 {{ filter_form.as_p }}
                 <input type="submit" value="filter" />
             </form>
         </div>
-        <div class="sort">
+        <div class="sort m">
             <div>
                 <span>Date:</span>
                 <a href="{{request.get_full_path|url}}sort_by=-created">
                     The newest
                 </a>
-                -
                 <a href="{{request.get_full_path|url}}sort_by=created">
                     The oldest
                 </a>
@@ -38,89 +38,90 @@
                 <a href="{{request.get_full_path|url}}sort_by=-review_count">
                     The most
                 </a>
-                -
                 <a href="{{request.get_full_path|url}}sort_by=review_count">
                     The least
                 </a>
             </div>
         </div>
-        <div>
-            <a href="{{request.get_full_path|url}}ln=fa">convert to Farsi</a>
-            <a href="{{request.get_full_path|url}}ln=en">convert to English</a>
+        <div class="convert m">
+            <a href="{{request.get_full_path|url}}ln=fa">Farsi To English</a>
+            <a href="{{request.get_full_path|url}}ln=en">English To Farsi</a>
         </div>
     </div>
-    <div class="vocabs">
-        {% for obj in page_obj %}
-        <div class="box">
-            {% if request.get_full_path|reverse:request %}
-            <div>
-                <div class="text mr">
-                    <div class="mr">{{forloop.counter}}</div>
-                    <div class="mr"><span>{{obj.translation}}</span></div>
-                    <div class="mr ">
-                        <button class="btn accordion btn-linear" data-box="translation">see trns</button>
+    <div>
+        <div class="vocabs">
+            {% for obj in page_obj %}
+            <div class="box">
+                {% if request.get_full_path|reverse:request %}
+                <div>
+                    <div class="text mr">
+                        <div class="mr">{{forloop.counter}}</div>
+                        <div class="mr"><span>{{obj.translation}}</span></div>
+                        <div class="mr ">
+                            <button class="btn accordion btn-linear" data-box="translation">see trns</button>
+                        </div>
+                    </div>
+                    <div class="translation mr close-box">
+                        <span>{{obj.text}}</span>
                     </div>
                 </div>
-                <div class="translation mr close-box">
-                    <span>{{obj.text}}</span>
-                </div>
-            </div>
-            {% else %}
-            <div>
-                <div class="text mr">
-                    <div class="mr">{{forloop.counter}}</div>
-                    <div class="mr"><span>{{obj.text}}</span></div>
-                    <div class="mr ">
-                        <button class="btn accordion btn-linear" data-box="translation">see trns</button>
+                {% else %}
+                <div>
+                    <div class="text mr">
+                        <div class="mr">{{forloop.counter}}</div>
+                        <div class="mr"><span>{{obj.text}}</span></div>
+                        <div class="mr ">
+                            <button class="btn accordion btn-linear" data-box="translation">see trns</button>
+                        </div>
+                    </div>
+                    <div class="translation mr close-box">
+                        <span>{{obj.translation}}</span>
                     </div>
                 </div>
-                <div class="translation mr close-box">
-                    <span>{{obj.translation}}</span>
+                {% endif %}
+                <div>
+                    <div class="info">
+                        <div class="mr">
+                            <span>type : {{obj.type}}</span>
+                        </div>
+                        <div class="mr">
+                            <span>review count :</span> <span class="review-count"> {{obj.review_count}}</span>
+                        </div>
+                    </div>
+                    <div class="manage">
+                        <div class="mb">
+                            <a href="{% url 'core:edit' pk=obj.pk %}">Edit</a>
+                        </div>
+                        <div class="mb">
+                            <a href="{% url 'core:delete' pk=obj.pk %}">Delete</a>
+                        </div>
+                        <div>
+                            <input type="hidden" name="pk" value="{{obj.pk}}">
+                            <button class="btn viewed random-review" data-review="list">Viewed</button>
+                        </div>
+                    </div>
+                    <div class="date">
+                        <span>{{obj.created|date:"M d, Y"}}</span>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
+        </div>
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+            <a href="{{request.get_full_path|url}}page=1">first</a>
+            <a href="{{request.get_full_path|url}}page={{ page_obj.previous_page_number }}"><img
+                    src="https://img.icons8.com/carbon-copy/100/000000/circled-chevron-left.png" /></a>
             {% endif %}
-            <div>
-                <div class="info">
-                    <div class="mr">
-                        <span>type : {{obj.type}}</span>
-                    </div>
-                    <div class="mr">
-                        <span>review count :</span> <span class="review-count"> {{obj.review_count}}</span>
-                    </div>
-                </div>
-                <div class="manage">
-                    <div class="mb">
-                        <a href="{% url 'core:edit' pk=obj.pk %}">Edit</a>
-                    </div>
-                    <div class="mb">
-                        <a href="{% url 'core:delete' pk=obj.pk %}">Delete</a>
-                    </div>
-                    <div>
-                        <input type="hidden" name="pk" value="{{obj.pk}}">
-                        <button class="btn viewed random-review" data-review="list">Viewed</button>
-                    </div>
-                </div>
-                <div class="date">
-                    <span>{{obj.created|date:"M d, Y"}}</span>
-                </div>
-            </div>
+            <span class="current">
+                {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+            </span>
+            {% if page_obj.has_next %}
+            <a href="{{request.get_full_path|url}}page={{ page_obj.next_page_number }}"><img
+                    src="https://img.icons8.com/carbon-copy/100/000000/circled-right-2.png" /></a>
+            {% endif %}
+            <a href="{{request.get_full_path|url}}page={{ page_obj.paginator.num_pages }}">last</a>
         </div>
-        {% endfor %}
-    </div>
-    <div class="pagination">
-        {% if page_obj.has_previous %}
-        <a href="{{request.get_full_path|url}}page=1">first</a>
-        <a href="{{request.get_full_path|url}}page={{ page_obj.previous_page_number }}"><img
-                src="https://img.icons8.com/carbon-copy/100/000000/circled-chevron-left.png" /></a>
-        {% endif %}
-        <span class="current">
-            {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
-        </span>
-        {% if page_obj.has_next %}
-        <a href="{{request.get_full_path|url}}page={{ page_obj.next_page_number }}"><img
-                src="https://img.icons8.com/carbon-copy/100/000000/circled-right-2.png" /></a>
-        {% endif %}
-        <a href="{{request.get_full_path|url}}page={{ page_obj.paginator.num_pages }}">last</a>
     </div>
 </div>
 
@@ -130,5 +131,4 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{% static 'js/view.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'js/app.js' %}?{% now 'U' %}"></script>
 {% endblock js %}

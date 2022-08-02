@@ -11,7 +11,6 @@ accordion.click(function () {
         box = this.parentElement.parentElement.nextElementSibling
     }
     box.classList.toggle("active");
-
 })
 
 var navBtn = $('.nav-btn')
@@ -23,4 +22,10 @@ navBtn.click(function () {
     } else {
         itemsBox.css('width', '0px')
     }
+})
+
+
+var closeBtn = $('.close')
+closeBtn.click(function () {
+    box.classList.toggle("active");
 })
