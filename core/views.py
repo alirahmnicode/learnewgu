@@ -46,14 +46,6 @@ class DeleteVocabView(DeleteView):
     success_url = '/'
 
 
-class DetailVocabView(DetailView):
-
-    template_name = 'core/detail.html'
-
-    def get_queryset(self):
-        return Vocabulary.objects.filter(user=self.request.user)
-
-
 def listing(request):
     queryset = Vocabulary.objects.get_recent_obj(owner=request.user)
     filter = VocabFilter(request.GET, queryset=queryset)
