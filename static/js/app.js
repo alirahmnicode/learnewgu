@@ -29,3 +29,10 @@ var closeBtn = $('.close')
 closeBtn.click(function () {
     box.classList.toggle("active");
 })
+
+
+var voiceBtn = $('.pronunciation')
+voiceBtn.click(function () {
+    var text_per = this.parentElement.parentElement.children[0].children[1].textContent
+    responsiveVoice.speak(text_per)
+})

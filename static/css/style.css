@@ -197,13 +197,17 @@ textarea {
     color: #fff;
 }
 
-.pagination img {
+.icon {
     width: 50px;
     -webkit-filter: invert(100%);
     /* Safari/Chrome */
     filter: invert(100%);
 }
 
+.pronunciation > img {
+    width: 25px;
+    cursor: pointer;
+}
 
 .s-f {
     display: none;

@@ -18,6 +18,9 @@
                 <div class="mr ">
                     <button class="btn accordion btn-linear" data-box="translation">see trns</button>
                 </div>
+                <div class="pronunciation">
+                    <img class="icon" src="https://img.icons8.com/ios/50/000000/medium-volume--v1.png"/>
+                </div>
             </div>
             <div class="translation mr close-box">
                 <span id="translation">{{obj.text}}</span>
@@ -30,6 +33,9 @@
                 <div class="mr" id="text"><span>{{obj.text}}</span></div>
                 <div class="mr ">
                     <button class="btn accordion btn-linear" data-box="translation">see trns</button>
+                </div>
+                <div class="pronunciation">
+                    <img class="icon" src="https://img.icons8.com/ios/50/000000/medium-volume--v1.png"/>
                 </div>
             </div>
             <div class="translation mr close-box">
@@ -79,5 +85,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{% static 'js/view.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'js/app.js' %}?{% now 'U' %}"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=wxAEnWIJ"></script>
 {% endblock js %}
