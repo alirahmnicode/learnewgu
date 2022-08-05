@@ -23,7 +23,7 @@ class VocabManager(models.Manager):
         return self.get_queryset(owner=owner).filter(type='phrase')
 
     def get_recent_obj(self, owner=None):
-        return self.get_queryset(owner=owner)
+        return self.get_queryset(owner=owner)[:10]
 
     def get_random_item(self, owner=None, filter_by=None, values=None):
         queryset = self.get_queryset(owner=owner)
