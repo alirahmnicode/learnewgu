@@ -9,9 +9,11 @@
 {% endblock nav %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Edit">
-</form>
+<div class="edit">
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Edit">
+    </form>
+</div>
 {% endblock content %}

@@ -38,9 +38,14 @@
                 </div>
                 <div>
                     <ul>
-                        {% for obj in categories %}
+                        {% for obj in categories|slice:1 %}
                         <li><a href="{% url 'category:detail' pk=obj.pk %}">{{obj}}</a></li>
                         {% endfor %}
+                        
+                        {% if categories.count > 1 %}
+                            <a href="">All Categories</a>
+                        {% endif %}
+                            
                     </ul>
                 </div>
             </div>

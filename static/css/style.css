@@ -40,6 +40,17 @@ nav>a {
     border-radius: 6px;
     background: #323347;
     color: #d6d5da;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+.manage-category {
+    margin: 30px;
+}
+
+.manage-category>a {
+    color: #bfcfff;
 }
 
 .text {
@@ -204,7 +215,7 @@ textarea {
     filter: invert(100%);
 }
 
-.pronunciation > img {
+.pronunciation>img {
     width: 25px;
     cursor: pointer;
 }
@@ -221,9 +232,10 @@ textarea {
     text-align: center;
 }
 
-.s-f > .m {
+.s-f>.m {
     margin: 30px 0;
 }
+
 .sort {
     color: #fff;
 }
@@ -263,6 +275,12 @@ textarea {
     margin-top: 10px;
 }
 
+.translation {
+    height: 0;
+    transition: .5s;
+    overflow: hidden;
+}
+
 .translation.active {
     height: 20px;
 }
@@ -270,6 +288,7 @@ textarea {
 
 .s-f.active {
     display: block;
+    z-index: 1;
 }
 
 
@@ -298,5 +317,28 @@ textarea {
         width: 30px;
         height: 2px;
         margin: 6px 0;
+    }
+}
+
+@media only screen and (max-width:500px) {
+    .to {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .to>a {
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width:743px) {
+    .vocabs {
+        justify-content: center;
+    }
+
+    .filter-btn {
+        text-align: center;
+        margin: 10px 0;
     }
 }

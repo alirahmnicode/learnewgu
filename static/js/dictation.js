@@ -5,7 +5,9 @@ function htmlCreator(word) {
     numbers = generateRandomNumber()
     for (let i = 0; i < word.length; i++) {
         if (numbers.includes(i)) {
-            html += `<input type="text" maxlength="1" style="width:10px" name="${i + 1}">`
+            html += `<input type="text" maxlength="1" 
+                        style="width:20px;text-align: center;outline: none;border: none;border-radius: 4px;" 
+                        name="${i + 1}">`
         } else {
             html += `<span>${word[i]}</span>`
         }
