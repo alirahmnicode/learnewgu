@@ -1,9 +1,16 @@
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.urls import reverse_lazy
 from .models import Category
 from .forms import CategoryForm
 
-# Create your views here.
+
+class CategoryListView(ListView):
+    template_name = 'category/list.html'
+    
+    def get_queryset(self):
+        return Category.objects.filter(user=self.request.user)
+
+
 class CreateCategoryView(CreateView):
     model = Category
     form_class = CategoryForm

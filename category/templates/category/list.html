@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>list of category</title>
+{% endblock head %}
+
+{% block nav %}
+{% include 'inc/nav.html' %}
+{% endblock nav %}
+
+{% block content %}
+<div class="categories vocabs">
+    {% for obj in object_list %}
+    <div class="category box">
+        <div class="ca-title"><a href="{% url 'category:detail' pk=obj.pk %}">{{obj}}</a></div>
+        <div>
+            {% for vocab in obj.vocabs.all|slice:5 %}
+            <p>{{vocab}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
