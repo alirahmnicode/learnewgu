@@ -302,6 +302,19 @@ textarea {
     margin: 10px 0;
 }
 
+.category {
+    padding: 10px;
+    
+}
+
+.ca-title {
+    margin-bottom: 20px;
+}
+
+.ca-title>a {
+    color: #ee6887;
+}
+
 @media only screen and (max-width: 850px) {
     nav {
         margin-left: 0;
@@ -340,5 +353,10 @@ textarea {
     .filter-btn {
         text-align: center;
         margin: 10px 0;
+    }
+
+    .manage-category {
+        text-align: center;
+        margin: 20px;
     }
 }
