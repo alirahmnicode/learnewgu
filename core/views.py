@@ -50,7 +50,7 @@ def listing(request):
     queryset = Vocabulary.objects.get_recent_obj(owner=request.user)
     filter = VocabFilter(request.GET, queryset=queryset)
     sorted_obj = SortObject(request.GET, queryset=filter.qs)
-    paginator = Paginator(sorted_obj.qs, 5)
+    paginator = Paginator(sorted_obj.qs, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)            
     context = {'page_obj': page_obj, 'filter_form':filter.form}
