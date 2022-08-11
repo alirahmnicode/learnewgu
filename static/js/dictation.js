@@ -48,14 +48,15 @@ checkBtn.click(function () {
             clientText += nodes[i].textContent
         }
     }
-    check()
+    check(this)
 })
 
 
-function check() {
+function check(btn) {
     var word = $(".data")[0].getAttribute('data-word')
     if (word === clientText) {
         var url = window.location.href
+        btnIsPending(true, btn)
         $.ajax({
             type: 'GET',
             url: url,
@@ -64,6 +65,7 @@ function check() {
                 html = ''
                 $(".data")[0].setAttribute('data-word', response.text)
                 htmlCreator($(".data")[0].getAttribute('data-word'))
+                btnIsPending(false, btn)
             }
         })
     } else {

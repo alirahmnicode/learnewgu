@@ -20,6 +20,7 @@
                 </div>
                 <div class="pronunciation">
                     <img class="icon" src="https://img.icons8.com/ios/50/000000/medium-volume--v1.png"/>
+                    <span class="loader btn-pending"></span>
                 </div>
             </div>
             <div class="translation mr close-box">
@@ -36,6 +37,7 @@
                 </div>
                 <div class="pronunciation">
                     <img class="icon" src="https://img.icons8.com/ios/50/000000/medium-volume--v1.png"/>
+                    <span class="loader btn-pending"></span>
                 </div>
             </div>
             <div class="translation mr close-box">
@@ -67,10 +69,16 @@
     </div>
     <div class="control">
         <div>
-            <button class="btn-linear btn" id="next">next</button>
+            <button id="next" class="btn-linear btn" >
+                <span class="btn-text">Next</span>
+                <span class="loader btn-pending"></span>
+            </button>
             <div class="mr">
                 <input type="hidden" name="pk" value="{{obj.pk}}">
-                <button class="btn viewed random-review " data-review="random">Viewed</button>
+                <button class="btn viewed random-review" data-review="random">
+                    <span class="btn-text">Viewed</span>
+                    <span class="loader btn-pending"></span>
+                </button>
             </div>
         </div>
         <div class="to">

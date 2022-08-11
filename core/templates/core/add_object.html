@@ -12,7 +12,10 @@
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <input type="submit" value="Add">
+        <button class="form-btn">
+            <span class="btn-text">Add</span>
+            <span class="loader btn-pending"></span>
+        </button>
     </form>
 </div>
 {% endblock content %}

@@ -18,15 +18,16 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 
-
+var viewBtn = $(".viewed")
 $(document).ready(function () {
-    $(".viewed").click(function () {
+    viewBtn.click(function () {
         // get this vocab pk
-        thisBtn = this
+        var thisBtn = this
         pk = getPk(thisBtn)
         view_url = `${host}/vocab/review/${pk}/`
         // send ajax request
         url = view_url
+        btnIsPending(true, thisBtn)
         $.ajax(url, {
             type: 'POST',
             headers: { 'X-CSRFToken': csrftoken },
@@ -34,10 +35,11 @@ $(document).ready(function () {
                 // update html
                 if ($(".random-review").data().review === 'random') {
                     // request sended from random page 
-                    getNewVocab()
+                    getNewVocab(thisBtn)
                 } else {
                     getCountBox(thisBtn).textContent = response['count']
                 }
+                btnIsPending(false, thisBtn)
             }
         })
     });
@@ -47,12 +49,13 @@ $(document).ready(function () {
 var nextBtn = $("#next")
 
 nextBtn.click(function () {
-    getNewVocab()
+    getNewVocab(this)
 })
 
-function getNewVocab() {
+function getNewVocab(thisBtn) {
     var view_url = `${host}/vocab/random-review/`
     var url = view_url
+    btnIsPending(true, thisBtn)
     $.ajax(url, {
         type: 'GET',
         success: function (response) {
@@ -68,6 +71,7 @@ function getNewVocab() {
             $("#date")[0].textContent = response.object['date']
             $("#r-count")[0].textContent = response.object['review_count']
             $("input[name=pk]")[0].value = response.object['pk']
+            btnIsPending(false, thisBtn)
         }
     })
 }

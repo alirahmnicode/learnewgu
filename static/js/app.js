@@ -33,6 +33,8 @@ closeBtn.click(function () {
 
 var voiceBtn = $('.pronunciation')
 voiceBtn.click(function () {
+    btnIsPending(true, this)
     var text_per = this.parentElement.parentElement.children[0].children[1].textContent
     responsiveVoice.speak(text_per)
+    btnIsPending(false, this)
 })
