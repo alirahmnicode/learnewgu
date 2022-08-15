@@ -38,3 +38,10 @@ voiceBtn.click(function () {
     responsiveVoice.speak(text_per)
     btnIsPending(false, this)
 })
+
+
+$(".close-message").click(function () {
+    $(this)
+        .parent(".alert")
+        .fadeOut();
+});

@@ -1,0 +1,4 @@
+<div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">
+    <p>{{ message }}</p>
+    <a class="close-message">&times;</a>
+</div>

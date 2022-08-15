@@ -1,15 +1,23 @@
 import random
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
-from django.views.generic import UpdateView, DeleteView, DetailView, ListView
+from django.views.generic import UpdateView, DeleteView, TemplateView
 from django.http import JsonResponse
 from django.core.paginator import Paginator
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from .models import Vocabulary
 from .forms import VocabulayForm
 from .filters import VocabFilter
 from .sorting import SortObject
 from .ajax import is_ajax
 from category.models import Category
+
+
+@method_decorator(login_required, name="dispatch")
+class IndexView(TemplateView):
+    def get(self, request):
+        return redirect('core:dashboard')
 
 
 class Dashboard(View):
