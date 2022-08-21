@@ -37,6 +37,7 @@ htmlCreator(word)
 var clientText = ''
 
 const checkBtn = $('.check-btn')
+const nextBtn = $('.next-btn')
 
 checkBtn.click(function () {
     var nodes = document.getElementsByClassName('dictation')[0].childNodes
@@ -52,24 +53,19 @@ checkBtn.click(function () {
 })
 
 
+nextBtn.click(function () {
+    // get next word
+    getWord()
+    check(this)
+})
+
+
 function check(btn) {
     var word = $(".data")[0].getAttribute('data-word')
     if (word === clientText) {
-        var url = window.location.href
         btnIsPending(true, btn)
-        $.ajax({
-            type: 'GET',
-            url: url,
-            success: function (response) {
-                // $('.dictation')[0].innerHTML = ''
-                html = ''
-                $(".data")[0].setAttribute('data-word', response.text)
-                // set translation
-                $('#translation')[0].textContent = response.translation
-                htmlCreator($(".data")[0].getAttribute('data-word'))
-                btnIsPending(false, btn)
-            }
-        })
+        getWord()
+        btnIsPending(false, btn)
     } else {
         verify()
     }
@@ -87,4 +83,22 @@ function verify() {
             }
         }
     }
+}
+
+function getWord() {
+    var url = window.location.href
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function (response) {
+            // close orignal word box if open
+            $('.or-word').css('display', 'none')
+            // create new html
+            html = ''
+            $(".data")[0].setAttribute('data-word', response.text)
+            // set translation
+            $('#translation')[0].textContent = response.translation
+            htmlCreator($(".data")[0].getAttribute('data-word'))
+        }
+    })
 }

@@ -7,9 +7,9 @@
 
 
 {% block nav %}
-    {% include 'inc/nav.html' %}
+{% include 'inc/nav.html' %}
 {% endblock nav %}
-    
+
 {% block content %}
 <div class="content" style="display:flex;justify-content:center;margin-top: 50px;">
     <div class="vocab dic-box" style="background-color: #323347;border-radius: 10px;">
@@ -18,9 +18,19 @@
         <div>
             <span>Translation :</span> <span id="translation" style="color: #ee6887;">{{word.translation}}</span>
         </div>
+        <div style="display:none;" class="or-word">
+            <span>Original Word :</span> <span id="translation" style="color: #ee6887;">{{word}}</span>
+        </div>
         <button class="check-btn btn-linear btn">
             <span class="btn-text">Check</span>
             <span class="loader btn-pending"></span>
+        </button>
+        <button class="next-btn btn-linear btn">
+            <span class="btn-text">Next</span>
+            <span class="loader btn-pending"></span>
+        </button>
+        <button class="see-btn btn-linear btn">
+            <span class="btn-text">See Word</span>
         </button>
     </div>
 </div>
@@ -29,4 +39,9 @@
 
 {% block js %}
 <script src="{% static 'js/dictation.js' %}?{% now 'U' %}"></script>
+<script>
+    $('.see-btn').click(function () {
+        $('.or-word').css('display', 'block')
+    })
+</script>
 {% endblock js %}
