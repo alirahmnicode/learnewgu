@@ -64,6 +64,8 @@ function check(btn) {
                 // $('.dictation')[0].innerHTML = ''
                 html = ''
                 $(".data")[0].setAttribute('data-word', response.text)
+                // set translation
+                $('#translation')[0].textContent = response.translation
                 htmlCreator($(".data")[0].getAttribute('data-word'))
                 btnIsPending(false, btn)
             }
