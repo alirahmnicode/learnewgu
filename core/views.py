@@ -55,7 +55,7 @@ class DeleteVocabView(DeleteView):
 
 
 def listing(request):
-    queryset = Vocabulary.objects.get_recent_obj(owner=request.user)
+    queryset = Vocabulary.objects.all(owner=request.user)
     filter = VocabFilter(request.GET, queryset=queryset)
     sorted_obj = SortObject(request.GET, queryset=filter.qs)
     paginator = Paginator(sorted_obj.qs, 10)
