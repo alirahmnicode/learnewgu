@@ -9,7 +9,7 @@ a {
 }
 
 body {
-    background-color: #1c1c27;
+    background-color: #2e303e;
     font-family: sans-serif;
     color: #fff;
 }
@@ -35,15 +35,16 @@ nav>a {
 }
 
 .box {
-    width: 220px;
+    width: 500px;
     margin: 4px;
     border-radius: 6px;
-    background: #323347;
+    background: #21222c;
     color: #d6d5da;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    padding: 5px;
 }
 
 .manage-category {
@@ -61,7 +62,7 @@ nav>a {
 }
 
 .text button {
-    background-color: #C84B31;
+    background-color: #44444f;
     color: #fff;
     font-size: 13px;
 }
@@ -69,7 +70,6 @@ nav>a {
 .manage {
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .manage>div[class="mr"] {
@@ -78,13 +78,13 @@ nav>a {
 
 .manage>div {
     border-radius: 3px;
-    background-color: #323347;
+    background-color: #36bc98;
     box-shadow: 0 0 2px 2px #44444f;
     margin: 10px;
 }
 
 .manage a {
-    color: #d6d5da;
+    color: #fff;
 }
 
 .mb {
@@ -166,7 +166,7 @@ textarea {
 
 .viewed {
     background: none;
-    color: #d6d5da;
+    color: #fff;
     font-family: sans-serif;
     cursor: pointer;
     width: 60px;
@@ -276,7 +276,7 @@ textarea {
 }
 
 .filter-btn button {
-    background-color: #967edc;
+    background-color: #36bc98;
     color: #d6d5da;
 }
 
