@@ -1,22 +1,31 @@
 var html = ''
 var numbers = []
 
+var word = $(".data")[0].getAttribute('data-word')
+htmlCreator(word)
+
 function htmlCreator(word) {
-    numbers = generateRandomNumber()
+    numbers = generateRandomNumber(word)
     for (let i = 0; i < word.length; i++) {
-        if (numbers.includes(i)) {
-            html += `<input type="text" maxlength="1" 
-                        style="width:20px;text-align: center;outline: none;border: none;border-radius: 4px;" 
-                        name="${i + 1}">`
+        if (word[i] == ' ') {
+            html += "<span> </span>"
         } else {
-            html += `<span>${word[i]}</span>`
+            if (numbers.includes(i)) {
+                html += `<input type="text" maxlength="1" 
+                            style="width:20px;text-align: center;outline: none;border: none;border-radius: 4px;" 
+                            name="${i + 1}">`
+            } else {
+                html += `<span>${word[i]}</span>`
+            }
         }
 
     }
     $('.dictation')[0].innerHTML = html
 }
 
-function generateRandomNumber() {
+function generateRandomNumber(word) {
+    // generate random number for index of blank
+    numbers = []
     var x = 0
     if (word.length > 3) {
         x = parseInt(word.length / 2) - 1
@@ -29,10 +38,9 @@ function generateRandomNumber() {
             numbers[i] = number
         }
     }
+
     return numbers
 }
-var word = $(".data")[0].getAttribute('data-word')
-htmlCreator(word)
 
 var clientText = ''
 
@@ -56,7 +64,6 @@ checkBtn.click(function () {
 nextBtn.click(function () {
     // get next word
     getWord()
-    check(this)
 })
 
 
@@ -85,7 +92,9 @@ function verify() {
     }
 }
 
+
 function getWord() {
+    // get random word from server
     var url = window.location.href
     $.ajax({
         type: 'GET',
@@ -98,7 +107,10 @@ function getWord() {
             $(".data")[0].setAttribute('data-word', response.text)
             // set translation
             $('#translation')[0].textContent = response.translation
-            htmlCreator($(".data")[0].getAttribute('data-word'))
+            $('#orginal')[0].textContent = response.text
+            // set orginal word
+            word = $(".data")[0].getAttribute('data-word')
+            htmlCreator(word)
         }
     })
 }
