@@ -1,12 +1,5 @@
-/* l => #967edc ,#5193dd */
-/* #ee6887 , #d6d5da, #acadb5*/
-
-body {
-    color: #acadb5;
-}
-
 a {
-    color: #acadb5;
+    color: #000;
 }
 
 .container {
@@ -20,7 +13,7 @@ a {
 
 .side {
     flex: 20%;
-    background: #1c1c2721;
+    background: #e2e2e3;
     overflow: hidden;
     transition: .8s;
 }
@@ -50,10 +43,7 @@ a {
     margin: 20px;
 }
 
-.categories a {
-    color: #acadb5;
-}
-
+/* responsive !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 @media only screen and (max-width: 850px) {
     .side {
         flex: none;
@@ -62,23 +52,5 @@ a {
 
     .side-title {
         margin: 20px 0 10px 0;
-    }
-
-    .border {
-        display: none;
-    }
-
-    .vocabs {
-        margin-top: 30px;
-    }
-
-    .box {
-        margin: 0 10px 10px 0;
-    }
-}
-
-@media only screen and (max-width: 740px) {
-    .vocabs {
-        justify-content: center;
     }
 }

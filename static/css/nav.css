@@ -13,16 +13,8 @@ nav a {
     display: none;
 }
 
+/* bav bar !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 @media only screen and (max-width: 850px) {
-    nav {
-        margin-left: 0;
-    }
-
-    nav>div {
-        margin-left: 10px;
-        cursor: pointer;
-    }
-
     .nav-btn>div {
         background-color: #acadb5;
         width: 30px;
@@ -30,23 +22,10 @@ nav a {
         margin: 6px 0;
     }
 
-    nav {
-        margin-left: 0;
-    }
-
     nav>div {
         margin-left: 10px;
         cursor: pointer;
     }
-
-    .nav-btn>div {
-        background-color: #acadb5;
-        width: 30px;
-        height: 2px;
-        margin: 6px 0;
-    }
-
-   
 
     .nav-btn {
         cursor: pointer;

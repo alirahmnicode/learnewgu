@@ -23,7 +23,7 @@
         </div>
         <div class="categories">
             <div>
-                <span>{{categories.count}} Categories</span>
+                <a href="{% url 'category:list' %}">{{categories.count}} Categories</a>
             </div>
             <div>
                 <ul>
@@ -34,7 +34,6 @@
                     {% if categories.count > 5 %}
                     <a href="{% url 'category:list' %}">All Categories</a>
                     {% endif %}
-
                 </ul>
             </div>
         </div>
