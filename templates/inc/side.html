@@ -1,0 +1,42 @@
+<div class="side">
+    <div class="side-title">
+        <span>Learnewgu</span> <span class="nav-btn">&#10094;</span>
+        <div class="border"></div>
+    </div>
+    <div class="links">
+        <div class="items">
+            <div>
+                <a href="{% url 'core:add' %}">Add+</a>
+            </div>
+            <div>
+                <a href="{% url 'core:list' %}">List</a>
+            </div>
+            <div>
+                <a href="{% url 'category:add' %}">Add Category</a>
+            </div>
+            <div>
+                <a href="{% url 'core:random' %}">Random review</a>
+            </div>
+            <div>
+                <a href="{% url 'dictaion:filling' %}">Dictation practice</a>
+            </div>
+        </div>
+        <div class="categories">
+            <div>
+                <span>{{categories.count}} Categories</span>
+            </div>
+            <div>
+                <ul>
+                    {% for obj in categories|slice:5 %}
+                    <li><a href="{% url 'category:detail' pk=obj.pk %}">{{obj}}</a></li>
+                    {% endfor %}
+
+                    {% if categories.count > 5 %}
+                    <a href="{% url 'category:list' %}">All Categories</a>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

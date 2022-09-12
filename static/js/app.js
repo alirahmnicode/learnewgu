@@ -45,3 +45,9 @@ $(".close-message").click(function () {
         .parent(".alert")
         .fadeOut();
 });
+
+// set side bars height
+const windowHeight = $( window ).height()
+if( windowHeight > $('.container').height()) {
+    $('.side').css('height', `${windowHeight}px`)
+}

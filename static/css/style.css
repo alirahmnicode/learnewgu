@@ -9,23 +9,7 @@ a {
 }
 
 body {
-    background-color: #2e303e;
     font-family: sans-serif;
-    color: #fff;
-}
-
-nav {
-    height: 60px;
-    display: flex;
-    align-items: center;
-}
-
-nav>a {
-    background: linear-gradient(90deg, #1c1c2753, #1c1c27, 80%, #323347);
-    color: #fff;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0 0 0 10px;
 }
 
 .vocabs {
@@ -38,13 +22,13 @@ nav>a {
     width: 500px;
     margin: 4px;
     border-radius: 6px;
-    background: #21222c;
-    color: #d6d5da;
+    color: #a4a4a6;;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
     padding: 5px;
+    box-shadow: 0px 0px 1px 1px;
 }
 
 .manage-category {
@@ -56,7 +40,7 @@ nav>a {
 }
 
 .text {
-    color: #ee6887;
+    color: #89888c;
     display: flex;
     align-items: center;
 }
@@ -79,7 +63,6 @@ nav>a {
 .manage>div {
     border-radius: 3px;
     background-color: #36bc98;
-    box-shadow: 0 0 2px 2px #44444f;
     margin: 10px;
 }
 
@@ -92,7 +75,7 @@ nav>a {
 }
 
 .date>span {
-    color: #c1c1c1;
+    color: black;
     font-size: 12px;
     margin: 3px;
     display: inline-block;
@@ -102,63 +85,6 @@ nav>a {
     margin: 10px 10px 10px 3px;
 }
 
-.add,
-.delete,
-.edit,
-.register {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.register {
-    flex-direction: column;
-    align-items: center;
-}
-
-form>p {
-    margin-bottom: 10px;
-    color: #bfcfff;
-}
-
-form input {
-    background-color: #323347;
-    color: #fff;
-    border: 1px solid #121212;
-    padding: 5px;
-    outline: none;
-}
-
-form input[type=submit] {
-    background-color: #967edc;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 5px 7px;
-    font-size: 16px;
-    font-family: sans-serif;
-}
-
-.form-btn {
-    background-color: #967edc;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 5px 7px;
-    font-size: 16px;
-    font-family: sans-serif;
-    color: #fff;
-    width: 60px;
-    height: 30px;
-}
-
-textarea {
-    background-color: #323347;
-    border: 1px solid #121212;
-    outline: none;
-    padding: 5px;
-    color: #fff;
-}
 
 .btn-linear {
     background: linear-gradient(90deg, #967edc, #5193dd);
@@ -178,6 +104,10 @@ textarea {
     flex-direction: column;
     align-items: center;
     margin: 100px;
+}
+
+.random_review>.box>div {
+    margin: auto;
 }
 
 .control {
@@ -276,8 +206,8 @@ textarea {
 }
 
 .filter-btn button {
-    background-color: #36bc98;
-    color: #d6d5da;
+    background-color: #44444f;
+    color: #fff;
 }
 
 .close {
@@ -334,24 +264,6 @@ textarea {
 
 .ca-title>a {
     color: #ee6887;
-}
-
-@media only screen and (max-width: 850px) {
-    nav {
-        margin-left: 0;
-    }
-
-    nav>div {
-        margin-left: 10px;
-        cursor: pointer;
-    }
-
-    .nav-btn>div {
-        background-color: #acadb5;
-        width: 30px;
-        height: 2px;
-        margin: 6px 0;
-    }
 }
 
 @media only screen and (max-width:500px) {

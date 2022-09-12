@@ -5,13 +5,8 @@
 <title>Fill in the blank</title>
 {% endblock head %}
 
-
-{% block nav %}
-{% include 'inc/nav.html' %}
-{% endblock nav %}
-
 {% block content %}
-<div class="content" style="display:flex;justify-content:center;margin-top: 50px;">
+<div style="display:flex;justify-content:center;margin-top: 50px;">
     <div class="vocab dic-box" style="background-color: #323347;border-radius: 10px;">
         <div class="data" data-word="{{word}}"></div>
         <pre class="dictation"></pre>
@@ -34,7 +29,6 @@
         </button>
     </div>
 </div>
-
 {% endblock content %}
 
 {% block js %}

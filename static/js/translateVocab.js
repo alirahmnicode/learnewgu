@@ -30,6 +30,6 @@ textField.keyup(function () {
     }
 })
 
-id_translation.keyup(function() {
+translationField.keyup(function() {
     btnIsPending(false, formBtn)
 })

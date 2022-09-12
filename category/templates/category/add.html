@@ -4,16 +4,15 @@
 <title>Create Category</title>
 {% endblock head %}
 
-{% block nav %}
-{% include 'inc/nav.html' %}
-{% endblock nav %}
 
 {% block content %}
-<div class="form">
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="create">
-    </form>
+<div class="add">
+    <div class="form">
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="create">
+        </form>
+    </div>
 </div>
 {% endblock content %}

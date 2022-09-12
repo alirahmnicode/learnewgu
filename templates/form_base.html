@@ -7,16 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}?{% now 'U' %}">
-    <link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
-    <link rel="stylesheet" href="{% static 'css/side.css' %}?{% now 'U' %}">
-    <link rel="stylesheet" href="{% static 'css/loading.css' %}?{% now 'U' %}">
     <link rel="stylesheet" href="{% static 'css/forms.css' %}?{% now 'U' %}">
-    {% block head %}
-    {% endblock head %}
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+    <title>Document</title>
 </head>
 
 <body>
-    {% csrf_token %}
+    {% include 'inc/nav.html' %}
+    {% block head %}
+
+    {% endblock head %}
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -25,21 +25,9 @@
     </ul>
     {% endif %}
 
-    {% block nav %}
+    {% block content %}
 
-    {% endblock nav %}
-
-
-    <div class="container">
-        {% include 'inc/side.html' %}
-        <div class="content">
-            {% include 'inc/nav.html' %}
-            {% block content %}
-            {% endblock content %}
-        </div>
-    </div>
-
-
+    {% endblock content %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{% static 'js/isPending.js' %}?{% now 'U' %}"></script>
@@ -47,6 +35,7 @@
     {% block js %}
 
     {% endblock js %}
+
 </body>
 
 </html>
