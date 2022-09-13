@@ -24,18 +24,7 @@
         </div>
         <div class="categories">
             <div>
-                <a href="{% url 'category:list' %}">{{categories.count}} Categories</a>
-            </div>
-            <div>
-                <ul>
-                    {% for obj in categories|slice:5 %}
-                    <li><a href="{% url 'category:detail' pk=obj.pk %}">{{obj}}</a></li>
-                    {% endfor %}
-
-                    {% if categories.count > 5 %}
-                    <a href="{% url 'category:list' %}">All Categories</a>
-                    {% endif %}
-                </ul>
+                <a href="{% url 'category:list' %}">Categories</a>
             </div>
         </div>
     </div>
