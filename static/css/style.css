@@ -158,6 +158,10 @@ body {
     justify-content: center;
 }
 
+.pagination img {
+    width: 50px;
+}
+
 .pagination a {
     color: #000;
 }
