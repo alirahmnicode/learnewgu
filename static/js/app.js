@@ -1,15 +1,15 @@
-// open filter box
-var filterBox = $('.s-f')
-var accordion = $('.accordion')
-var box;
+// filter box
+const filterBtn = $("#filter-btn")
+const filterBox = $('.s-f')[0]
+filterBtn.click(function () {
+    console.log('ali')
+    filterBox.classList.toggle('active')
+})
 
+// translation
+const accordion = $('.accordion')
 accordion.click(function () {
-    var boxMode = this.getAttribute('data-box')
-    if (boxMode == 'filter') {
-        box = filterBox[0]
-    } else {
-        box = this.parentElement.parentElement.nextElementSibling
-    }
+    var box = $(this.offsetParent).find('.translation')[0]
     box.classList.toggle("active");
 })
 
@@ -27,6 +27,7 @@ navBtn.click(function () {
 
 var closeBtn = $('.close')
 closeBtn.click(function () {
+    var box = $(this.offsetParent)[0];
     box.classList.toggle("active");
 })
 

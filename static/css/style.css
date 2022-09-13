@@ -228,13 +228,12 @@ body {
 }
 
 .translation {
-    height: 0;
-    transition: .5s;
+    display: none;
     overflow: hidden;
 }
 
 .translation.active {
-    height: 20px;
+    display: block;
 }
 
 
