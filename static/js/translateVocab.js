@@ -45,8 +45,8 @@ function check(word) {
         url: checkUrl,
         success: function (response) {
             if(!response) {
-                // word exist
-                $('#word-check')[0].textContent = 'ali'
+                // the word exists
+                $('#word-check')[0].textContent = 'This word exists.'
             } else {
                 $('#word-check')[0].textContent = ''
             }
