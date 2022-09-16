@@ -7,7 +7,11 @@ textField.keyup(function () {
     const text = textField[0].value
     const target = 'fa'
     if (text != '') {
-        // send ajax
+        // check if the word exits in db
+        if (text.split(' ').length < 3) {
+            check(text)
+        }
+        // get words translation
         btnIsPending(true, formBtn)
         const url = `${host}/translate/text/?text=${text}`
         $.ajax({
@@ -30,6 +34,22 @@ textField.keyup(function () {
     }
 })
 
-translationField.keyup(function() {
+translationField.keyup(function () {
     btnIsPending(false, formBtn)
 })
+
+function check(word) {
+    const checkUrl = `${host}/vocab/check/?word=${word}`
+    $.ajax({
+        type: 'GET',
+        url: checkUrl,
+        success: function (response) {
+            if(!response) {
+                // word exist
+                $('#word-check')[0].textContent = 'ali'
+            } else {
+                $('#word-check')[0].textContent = ''
+            }
+        }
+    })
+}

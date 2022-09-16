@@ -5,7 +5,8 @@ from .views import (IndexView,
                     DeleteVocabView, 
                     listing, 
                     ReviewVocab,
-                    RandomReview)
+                    RandomReview,
+                    check_word)
 
 
 app_name = 'core'
@@ -19,4 +20,5 @@ urlpatterns = [
     path('vocab/list/', listing, name="list"),
     path('vocab/review/<int:pk>/', ReviewVocab.as_view(), name="review"),
     path('vocab/random-review/', RandomReview.as_view(), name="random"),
+    path('vocab/check/', check_word),
 ]

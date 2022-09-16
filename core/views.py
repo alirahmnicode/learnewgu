@@ -81,3 +81,14 @@ class RandomReview(View):
             return JsonResponse({'object': random_item})
         else:
             return render(request, 'core/random_review.html', {'obj':random_item})
+
+
+def check_word(request):
+    word = request.GET.get('word')
+    if word != '':
+        w = Vocabulary.objects.filter(text=word)
+        if w.count() > 0:
+            return JsonResponse(False, safe=False)
+        else:
+            return JsonResponse(True, safe=False)
+
