@@ -40,6 +40,12 @@ form input[type=submit] {
     font-family: sans-serif;
 }
 
+
+.filters form input[type=submit] {
+    background-color: #36bc98;
+}
+
+
 .form-btn {
     background-color: #e2e2e3;
     border: none;

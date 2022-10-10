@@ -225,6 +225,11 @@ body {
     color: #bfcfff;
     display: block;
     margin-top: 10px;
+    color: #36bc98;
+}
+
+.to {
+    display: flex;
 }
 
 .translation {
@@ -240,6 +245,8 @@ body {
 .s-f.active {
     display: block;
     z-index: 1;
+    box-shadow: -13px 13px 43px 1px #757575;
+    border-radius: 10px;
 }
 
 
