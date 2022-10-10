@@ -17,14 +17,7 @@ from category.models import Category
 @method_decorator(login_required, name="dispatch")
 class IndexView(TemplateView):
     def get(self, request):
-        return redirect('core:dashboard')
-
-
-class Dashboard(View):
-    def get(self, request):
-        obj_list = Vocabulary.objects.get_recent_obj(owner=request.user)
-        categories = Category.objects.filter(user=request.user)
-        return render(request, 'core/dashboard.html', {'obj_list':obj_list, 'categories':categories})
+        return redirect('core:list')
 
 
 class AddObject(View):
