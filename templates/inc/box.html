@@ -1,12 +1,14 @@
 {% load custom_tags %}
 <div class="box">
-    {% include 'inc/loading.html' %}
-    {% if request.get_full_path|reverse:request %}
-    <div>
-        <div class="text mr">
+    <div class="text mr">
+        <div>
             <div class="mr">{{forloop.counter}}</div>
-            <div class="mr"><span class="text-lan">{{obj.translation}}</span></div>
-            <div class="mr ">
+            <div class="mr">
+                <p class="text-lan">{{obj.word}}</p>
+            </div>
+        </div>
+        <div>
+            <div class="mr">
                 <button class="btn accordion" data-box="translation">see trns</button>
             </div>
             <div class="pronunciation">
@@ -14,37 +16,20 @@
                 <span class="loader btn-pending"></span>
             </div>
         </div>
-        <div class="translation mr close-box">
-            <span>{{obj.text}}</span>
-        </div>
     </div>
-    {% else %}
-    <div>
-        <div class="text mr">
-            <div>
-                <div class="mr">{{forloop.counter}}</div>
-                <div class="mr"><p class="text-lan">{{obj.text}}</p></div>
-            </div>
-            <div>
-                <div class="mr ">
-                    <button class="btn accordion" data-box="translation">see trns</button>
-                </div>
-                <div class="pronunciation">
-                    <img class="icon" src="https://img.icons8.com/ios/50/000000/medium-volume--v1.png" />
-                    <span class="loader btn-pending"></span>
-                </div>
-            </div>
-        </div>
-        <div class="translation mr close-box">
-            <p>{{obj.translation}}</p>
-        </div>
+    <div class="translation mr close-box">
+        <p>{{obj.translation}}</p>
     </div>
-    {% endif %}
+    <div class="word-sentences">
+        {% for sentence in obj.sentences.all %}
+            <div class="sentence">
+                <p>{{sentence.text}}</p>
+                <p>{{sentence.translation}}</p>
+            </div>
+        {% endfor %}
+    </div>
     <div>
         <div class="info">
-            <div class="mr">
-                <span>type : {{obj.type}}</span>
-            </div>
             <div class="mr">
                 <span>review count :</span> <span class="review-count"> {{obj.review_count}}</span>
             </div>
