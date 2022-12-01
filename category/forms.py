@@ -5,15 +5,12 @@ from core.models import Vocabulary
 
 class CategoryForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, q, *args, **kwargs):
         """ Grants access to the request object so that only members of the current user
         are given as options"""
-
-        self.request = kwargs.pop('request')
         super(CategoryForm, self).__init__(*args, **kwargs)
-        self.fields['vocabs'].queryset = Vocabulary.objects.filter(
-            user=self.request.user
-        )
+        if q:
+            self.fields['vocabs'].queryset = q
 
     class Meta:
         model = Category

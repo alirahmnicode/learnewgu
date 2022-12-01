@@ -6,7 +6,7 @@
 
 
 {% block content %}
-<div class="add">
+<div class="add" style="justify-content: space-between; margin: 50px 200px;">
     <div class="form">
         <form method="post">
             {% csrf_token %}
@@ -14,5 +14,40 @@
             <input type="submit" value="create">
         </form>
     </div>
+    <div class="vocabs-box">
+        <div>
+            <label for="search">Search in vocabulary:</label>
+            <p>
+                <input type="text" id="search">
+            </p>
+        </div>
+        <div class="choose-vocab">
+            {% for vocab in vocabs %}
+            <div id="{{vocab.id}}" class="vocab">{{vocab}}</div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock content %}
+
+
+{% block js %}
+<script>
+    var vocabs = $('.vocab')
+    vocabs.click(function () {
+        // get selected vocabulary
+        const vocavId = this.id
+        const selectedVcab = document.querySelector(`select option[value="${vocavId}"]`)
+        // choose vocab in form
+        if (selectedVcab.selected) {
+            selectedVcab.selected = false
+        } else {
+            selectedVcab.selected = true
+        }
+    })
+
+    for (let i = 0; i < vocabs.length; i++) {
+        console.log(vocabs[i].textContent)
+    }
+</script>
+{% endblock js %}

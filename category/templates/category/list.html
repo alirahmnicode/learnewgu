@@ -10,6 +10,7 @@
     {% for obj in object_list %}
     <div class="category box">
         <div class="ca-title"><a href="{% url 'category:detail' pk=obj.pk %}">{{obj}}</a></div>
+        <a href="{% url 'category:delete' pk=obj.pk %}">Delete</a>
         <div>
             {% for vocab in obj.vocabs.all|slice:5 %}
             <p>{{vocab}}</p>
