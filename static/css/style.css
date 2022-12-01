@@ -328,6 +328,30 @@ body {
     color: rgba(114, 28, 36, 1);
 }
 
+
+.vocabs-list {
+    margin: 10px 0;
+}
+
+.vocabs-box input {
+    background-color: #e2e2e3;
+    color: #000;
+    border: 1px solid #121212;
+    padding: 5px;
+    outline: none;
+}
+
+.choose-vocab>.vocab {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.choose-vocab>.vocab:nth-child(even) {
+    background-color: #e1e1e1;
+}
+
 /* responsive !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 @media only screen and (max-width: 850px) {
     .border {
