@@ -34,7 +34,7 @@ def login_view(request):
                 login(request, user)
                 message = "you are loggined succesfully"
                 messages.add_message(request, messages.SUCCESS, message)
-                return redirect('core:dashboard')
+                return redirect('core:list')
             else:
                 message = 'Username or password is wrong!'
                 messages.add_message(request, messages.ERROR, message)
