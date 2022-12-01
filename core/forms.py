@@ -1,12 +1,28 @@
 from django import forms
-from .models import Vocabulary
+from django.forms import inlineformset_factory
+from .models import Vocabulary, Sentence
 
 
 class VocabulayForm(forms.ModelForm):
     class Meta:
         model = Vocabulary
-        fields = ('text', 'translation', 'type')
+        fields = ('word', 'translation')
         widgets = {
-            'text': forms.TextInput(attrs={'autocomplete':'off'})
+            'word': forms.TextInput(attrs={'maxlength':'200', 'autocomplete':'off'}),
+            'translation': forms.Textarea(attrs={'cols':'30', 'rows':'1'})
         }
         
+        
+class SentenceForm(forms.ModelForm):
+    class Meta:
+        model = Sentence
+        fields = ('text', 'translation')
+        widgets = {
+            'text': forms.Textarea(attrs={'cols':'30', 'rows':'1'}),
+            'translation': forms.Textarea(attrs={'cols':'30', 'rows':'1'})
+        }
+
+
+SentenceInlineFormset = inlineformset_factory(
+    parent_model=Vocabulary, model=Sentence, 
+    form=SentenceForm, extra=1, can_delete=True)

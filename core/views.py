@@ -1,13 +1,14 @@
 import random
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
-from django.views.generic import UpdateView, DeleteView, TemplateView
+from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from .models import Vocabulary
-from .forms import VocabulayForm
+from .forms import VocabulayForm, SentenceInlineFormset
 from .filters import VocabFilter
 from .sorting import SortObject
 from .ajax import is_ajax
@@ -20,18 +21,41 @@ class IndexView(TemplateView):
         return redirect('core:list')
 
 
-class AddObject(View):
-    def get(self, request, **kwrags):
-        form = VocabulayForm
-        return render(request, 'core/add_object.html', {'form':form})
+class VocabCreate(CreateView):
+    form_class = VocabulayForm
+    template_name = 'core/add_vocab.html'
 
-    def post(self, request, **kwrags):
-        form = VocabulayForm(request.POST)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.user = request.user
-            obj.save()
-            return redirect(request.META.get('HTTP_REFERER'))
+    def get_context_data(self, **kwargs):
+        ctx = super(VocabCreate, self).get_context_data(**kwargs)
+        ctx['sentence_formset'] = SentenceInlineFormset()
+        return ctx
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        sentence_formset = SentenceInlineFormset(self.request.POST)
+        if form.is_valid() and sentence_formset.is_valid():
+            return self.form_valid(form, sentence_formset)
+        else:
+            return self.form_invalid(form, sentence_formset)
+
+    def form_valid(self, form, sentence_formset):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        # saving sentence Instances
+        sentences = sentence_formset.save(commit=False)
+        for sentence in sentences:
+            sentence.vocabulary = self.object
+            sentence.save()
+        return redirect(("core:add"))
+
+    def form_invalid(self, form, sentence_formset):
+        return self.render_to_response(
+            self.get_context_data(form=form,
+                                  sentence_formset=sentence_formset
+                                  ))
 
 
 class UpdateVocab(UpdateView):

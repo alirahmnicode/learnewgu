@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (IndexView,
-                    AddObject, UpdateVocab, 
+                    VocabCreate, UpdateVocab, 
                     DeleteVocabView, 
                     listing, 
                     ReviewVocab,
@@ -12,7 +12,7 @@ app_name = 'core'
 
 urlpatterns = [
     path('', IndexView.as_view(), name="home"),
-    path('add/', AddObject.as_view(), name="add"),
+    path('add/', VocabCreate.as_view(), name="add"),
     path('vocab/<int:pk>/edit/', UpdateVocab.as_view(), name="edit"),
     path('vocab/<int:pk>/delete/', DeleteVocabView.as_view(), name="delete"),
     path('vocab/list/', listing, name="list"),

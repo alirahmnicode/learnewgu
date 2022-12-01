@@ -7,4 +7,4 @@ class VocabFilter(django_filters.FilterSet):
 
     class Meta:
         model = Vocabulary
-        fields = ('review_count', 'type')
+        fields = ('review_count',)

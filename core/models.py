@@ -4,14 +4,9 @@ from .managers import VocabManager
 
 
 class Vocabulary(models.Model):
-    TYEPS_CHOICES = (
-        ('word', 'word'),
-        ('phrase', 'phrase')
-    )
-    text = models.CharField(max_length=750)
+    word = models.CharField(max_length=100)
     translation = models.TextField()
     review_count = models.PositiveIntegerField(blank=True, default=0)
-    type = models.CharField(choices=TYEPS_CHOICES, max_length=10)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -24,4 +19,14 @@ class Vocabulary(models.Model):
         return self.review_count
         
     def __str__(self):
-        return self.text[:20]
+        return self.user.username
+
+
+class Sentence(models.Model):
+    text = models.TextField()
+    translation = models.TextField()
+    vocabulary = models.ForeignKey(Vocabulary, on_delete=models.CASCADE, 
+                                        related_name='sentences')
+
+    def __str__(self):
+        return f'{self.text[:20]}...'
