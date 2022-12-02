@@ -6,7 +6,10 @@ nav {
 
 nav a {
     margin-left: 30px;
-    padding: 0;
+    padding: 10px;
+    color: #fff;
+    background-color: #FF2E63;
+    border-radius: 5px;
 }
 
 .nav-btn {

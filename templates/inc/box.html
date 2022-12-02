@@ -9,10 +9,12 @@
         </div>
         <div>
             <div class="mr">
-                <button class="btn accordion" data-box="translation">see trns</button>
+                <button class="accordion" data-box="translation">
+                    <i class="fa-solid fa-language"></i>
+                </button>
             </div>
             <div class="pronunciation">
-                <img class="icon" src="https://img.icons8.com/ios/50/000000/medium-volume--v1.png" />
+                <i class="fa-solid fa-volume-high"></i>
                 <span class="loader btn-pending"></span>
             </div>
         </div>
@@ -21,6 +23,7 @@
         <p>{{obj.translation}}</p>
     </div>
     <div class="word-sentences">
+        <p>sentences:</p>
         {% for sentence in obj.sentences.all %}
             <div class="sentence">
                 <p>{{sentence.text}}</p>
