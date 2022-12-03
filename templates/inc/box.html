@@ -1,18 +1,21 @@
 {% load custom_tags %}
 <div class="box">
     <div class="text mr">
+        <!-- word -->
         <div>
             <div class="mr">{{forloop.counter}}</div>
             <div class="mr">
-                <p class="text-lan">{{obj.word}}</p>
+                <p class="word text-lan">{{obj.word}}</p>
             </div>
         </div>
         <div>
+            <!-- translation of word -->
             <div class="mr">
                 <button class="accordion" data-box="translation">
                     <i class="fa-solid fa-language"></i>
                 </button>
             </div>
+            <!-- pronunciation of word -->
             <div class="pronunciation">
                 <i class="fa-solid fa-volume-high"></i>
                 <span class="loader btn-pending"></span>
