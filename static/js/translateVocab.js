@@ -1,42 +1,37 @@
 var host = window.location.origin
-var textField = $('#id_text')
+var textField = $('.text-trns')
 var translationField = $('#id_translation')
 var formBtn = $('.form-btn')[0]
 
 textField.keyup(function () {
-    const text = textField[0].value
+    const thisInput = $(this)
+    const text = this.value
+    const inputName = thisInput[0].name
     const target = 'fa'
     if (text != '') {
         // check if the word exits in db
-        if (text.split(' ').length < 3) {
-            check(text)
-        }
+        // if (text.split(' ').length < 3) {
+        //     check(text)
+        // }
         // get words translation
-        btnIsPending(true, formBtn)
         const url = `${host}/translate/text/?text=${text}`
         $.ajax({
             type: 'GET',
             url: url,
             success: function (response) {
-                translationField[0].value = response
-                btnIsPending(false, formBtn)
+                console.log(response)
+                if (inputName == 'word') {
+                    put_word_translation(response)
+                } else {
+                    put_sentence_translation(thisInput, response)
+                }
             }
         })
     } else {
         translationField[0].value = ''
     }
-    // set choose field
-    if (text.split(' ').length > 2) {
-        $('#id_type')[0].value = 'phrase'
-    }
-    else {
-        $('#id_type')[0].value = 'word'
-    }
 })
 
-translationField.keyup(function () {
-    btnIsPending(false, formBtn)
-})
 
 function check(word) {
     const checkUrl = `${host}/vocab/check/?word=${word}`
@@ -52,4 +47,14 @@ function check(word) {
             }
         }
     })
+}
+
+function put_word_translation(response){
+    console.log(response)
+    $('.word-translation')[0].value = response.tr_text
+}
+
+function put_sentence_translation(input, response){
+   const trnField = input[0].parentElement.nextElementSibling.firstElementChild
+   trnField.value = response.tr_text
 }
