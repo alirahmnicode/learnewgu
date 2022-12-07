@@ -103,7 +103,7 @@ class RandomReview(View):
 def check_word(request):
     word = request.GET.get('word')
     if word != '':
-        w = Vocabulary.objects.filter(text=word)
+        w = Vocabulary.objects.filter(user=request.user, word=word)
         if w.count() > 0:
             return JsonResponse(False, safe=False)
         else:

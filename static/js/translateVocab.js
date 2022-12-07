@@ -8,12 +8,11 @@ textField.keyup(function () {
     const text = this.value
     const inputName = thisInput[0].name
     const target = 'fa'
-    console.log('ali')
     if (text != '') {
         // check if the word exits in db
-        // if (text.split(' ').length < 3) {
-        //     check(text)
-        // }
+        if (text.split(' ').length < 3) {
+            check(text)
+        }
         // get words translation
         const url = `${host}/translate/text/?text=${text}`
         $.ajax({
@@ -50,7 +49,6 @@ function check(word) {
 }
 
 function put_word_translation(response){
-    console.log(response)
     $('.word-translation')[0].value = response.tr_text
 }
 

@@ -6,6 +6,9 @@
 
 {% block content %}
 <div class="formbg add-vocab-form">
+    <div>
+        <span id="word-check"></span>
+    </div>
     <form method="post">{% csrf_token %}
         {{ form.as_p }}
         <table class="table">
