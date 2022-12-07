@@ -8,8 +8,8 @@ class VocabulayForm(forms.ModelForm):
         model = Vocabulary
         fields = ('word', 'translation')
         widgets = {
-            'word': forms.TextInput(attrs={'maxlength':'200', 'autocomplete':'off'}),
-            'translation': forms.Textarea(attrs={'cols':'30', 'rows':'1'})
+            'word': forms.TextInput(attrs={'maxlength':'200', 'autocomplete':'off', 'class':'text-trns'}),
+            'translation': forms.Textarea(attrs={'cols':'30', 'rows':'1', 'class':'word-translation'})
         }
         
         
@@ -18,7 +18,7 @@ class SentenceForm(forms.ModelForm):
         model = Sentence
         fields = ('text', 'translation')
         widgets = {
-            'text': forms.Textarea(attrs={'cols':'30', 'rows':'1'}),
+            'text': forms.Textarea(attrs={'cols':'30', 'rows':'1', 'class':'text-trns'}),
             'translation': forms.Textarea(attrs={'cols':'30', 'rows':'1'})
         }
 

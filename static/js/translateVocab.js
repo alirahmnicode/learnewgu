@@ -8,6 +8,7 @@ textField.keyup(function () {
     const text = this.value
     const inputName = thisInput[0].name
     const target = 'fa'
+    console.log('ali')
     if (text != '') {
         // check if the word exits in db
         // if (text.split(' ').length < 3) {
@@ -19,7 +20,6 @@ textField.keyup(function () {
             type: 'GET',
             url: url,
             success: function (response) {
-                console.log(response)
                 if (inputName == 'word') {
                     put_word_translation(response)
                 } else {
