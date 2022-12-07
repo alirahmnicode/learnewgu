@@ -16,19 +16,11 @@ class VocabManager(models.Manager):
         else:
             return self.get_queryset(owner=owner)
 
-    def get_words(self, owner=None):
-        return self.get_queryset(owner=owner).filter(type='word')
-
-    def get_phrases(self, owner=None):
-        return self.get_queryset(owner=owner).filter(type='phrase')
-
     def get_recent_obj(self, owner=None):
         return self.get_queryset(owner=owner)[:10]
 
     def get_random_item(self, owner=None, filter_by=None, values=None):
         queryset = self.get_queryset(owner=owner)
-        if filter_by:
-            queryset = queryset.filter(type=filter_by)
         if values:
             queryset = queryset.values()
         item = random.choice(queryset)
