@@ -176,9 +176,17 @@ body {
     width: 50px;
 }
 
+.trn-icon {
+    width: 30px;
+}
+
 .pronunciation>img {
     width: 25px;
     cursor: pointer;
+}
+
+.accordion {
+    background: none;
 }
 
 .s-f {
