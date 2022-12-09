@@ -91,9 +91,10 @@ class ReviewVocab(View):
 
 class RandomReview(View):
     def get(self, request):
-        items = Vocabulary.objects.all(owner=request.user).values('pk', 'text', 'translation',
-                                            'type', 'review_count', 'created')
+        items = Vocabulary.objects.all(owner=request.user).values('pk', 'word', 'translation',
+                                            'review_count', 'created')
         random_item = random.choice(items)
+        print(random_item)
         if is_ajax(request):
             return JsonResponse({'object': random_item})
         else:
